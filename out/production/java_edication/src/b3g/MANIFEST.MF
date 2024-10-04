@@ -1,0 +1,2 @@
+Main-Class: src.b3g.B3GToJpegConverter
+

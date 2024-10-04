@@ -21,6 +21,8 @@
 - Разрядность x64: https://corretto.aws/downloads/latest/amazon-corretto-11-x64-windows-jdk.msi.
 - Разрядность x86: https://corretto.aws/downloads/latest/amazon-corretto-11-x86-windows-jdk.msi.
 - JDK будет находиться здесь:  C:\Program Files\Amazon Corretto\.
+- задать переменную JAVA_HOME C:\Program Files\Amazon Corretto\jdk[version]\bin
+- добавить путьв PATH C:\Program Files\Amazon Corretto\jdk[version]\bin
 
 - Компиляция
   - один файл # javac -encoding UTF-8 HelloJdk.java
@@ -28,7 +30,7 @@
 - Запуск
   - # java -Dfile.encoding=UTF-8 HelloJdk
   - # java HelloJdk
-  - запуск нескольких файлов # java -cp bin Practicum 
+  - запуск нескольких файлов # java -cp bin test_app.src.service.Main
 
 ### JAR
 - Java ARchive - java архив со всеми файлами, который можно передавать
@@ -41,8 +43,26 @@
   - c (от англ. create, «создавать») указывает на то, что создаётся новый файл;
   - f (от англ. filename, «имя файла») предупреждает, что после него будет написано имя создаваемого jar-файла;
   - e (от англ. entrypoint, «точка входа») указывает на название класса, с которого нужно начать выполнение программы.
+- несколько файлов test_app.src/Main.class и другие
+  - создать файл MANIFEST.MF в bin - Main-Class: test_app.src.screenshot.Main
+  - перейти в папку bin
+    - jar cvf test.jar *
 - когда есть файл jar можно запустить
   - # java -jar library.jar
+
+### Упаковка в исполняемый файл exe
+- Launch4j - исползует jar архив
+
+### Поэтапно компиляция
+- структура src.screen.Main.java
+- создаем MANIFEST.MF можно внутрь пакета для отдельного приложения либо в корень если один сервис
+  - Main-Class: src.screen.Main
+- из корня компилируем 
+  - javac -d bin src/screen/Main.java
+- создаем jar из корня
+  - jar cfm myapp.jar .\src\screen\MANIFEST.MF -C bin .
+- запускаем проверяем
+  - java -jar myapp.jar
 
 ### Примитивы
 - Целочисленные
@@ -156,3 +176,5 @@
 ### Пакеты
 - по сути это папка - namespace - пространство имен с файлами классов
 - можно импортировать весь пакет, когда много классов import java.util.*;
+
+МОДИФИКАТОРЫ ДОСТУПА И ИМЕНА ОБРАТНЫЕ ПАКЕТОВ

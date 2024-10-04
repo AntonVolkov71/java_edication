@@ -6,16 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/java_edication.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/lection.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Hello.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ru/yandex/practicum/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/output/image.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/image.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output/image.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/b3g/B3GToJpegConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/b3g/B3GToJpegConverter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +52,7 @@
     "Application.Main (1).executor": "Run",
     "Application.Main.executor": "Run",
     "Application.Main_1.executor": "Run",
+    "Application.MetaInfoForm.executor": "Run",
     "Application.ReadBinaryFile.executor": "Run",
     "Application.src.Main.executor": "Run",
     "Application.test_app.src.screenshot.Main.executor": "Run",
@@ -88,7 +83,7 @@
       <recent name="E:\1. Документы\Edication\2. Java\java_edication\bin\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FileReadWrite">
+  <component name="RunManager" selected="Application.MetaInfoForm">
     <configuration name="B3GParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.b3g.B3GParser" />
       <module name="java_edication" />
@@ -128,6 +123,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MetaInfoForm" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.b3g.MetaInfoForm" />
+      <module name="java_edication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.b3g.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ReadBinaryFile" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.b3g.ReadBinaryFile" />
       <module name="java_edication" />
@@ -141,33 +149,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="test_app.src.screenshot.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test_app.src.screenshot.Main" />
-      <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="test_app.src.screenshot.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.B3GParser" />
       <item itemvalue="Application.B3GToJpegConverter" />
       <item itemvalue="Application.FileReadWrite" />
+      <item itemvalue="Application.MetaInfoForm" />
       <item itemvalue="Application.ReadBinaryFile" />
-      <item itemvalue="Application.test_app.src.screenshot.Main" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MetaInfoForm" />
         <item itemvalue="Application.FileReadWrite" />
         <item itemvalue="Application.ReadBinaryFile" />
         <item itemvalue="Application.B3GToJpegConverter" />
         <item itemvalue="Application.B3GParser" />
-        <item itemvalue="Application.test_app.src.screenshot.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -184,7 +179,7 @@
       <workItem from="1727954196522" duration="7633000" />
       <workItem from="1728030851599" duration="1538000" />
       <workItem from="1728032399579" duration="135000" />
-      <workItem from="1728032556982" duration="8616000" />
+      <workItem from="1728032556982" duration="10724000" />
     </task>
     <servers />
   </component>

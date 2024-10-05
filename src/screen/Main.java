@@ -5,43 +5,39 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
-    public static void main (String[] args) throws IOException {
 
-        // Захватываем экран
-        BufferedImage screenshot = capture();
+    public static void main(String[] args) throws IOException {
 
-        if (screenshot != null) {
-            // Обрезаем изображение (например, обрезаем центр)
-//            BufferedImage croppedImage = crop(screenshot, 100, 100, 600, 400);
+        ArrayList<String> names = new ArrayList<String>();
 
-            // Сохраняем обрезанное изображение (добавьте код для сохранения, если нужно)
-            // Например, вы можете использовать ImageIO для сохранения изображения
-            ImageIO.write(screenshot, "png", new File("cropped_screenshot.png"));
+        names.add("anton");
+        names.add("Inna");
+        names.add(0, "Diana");
+        names.add("dog");
+        names.add("cat");
+
+        names.remove(3);
+        names.remove("cat");
+
+        HashMap<String, Integer> ages = new HashMap<String, Integer>();
+
+        ages.put("anton", 34);
+        ages.put("inna", 36);
+        ages.put("diana", 8);
+
+        for (Map.Entry<String, Integer> ent : ages.entrySet()) {
+            System.out.println(ent);
+
         }
-    }
 
-    public static BufferedImage capture() {
-        try {
-            // Создаем объект Robot для захвата экрана
-            Robot robot = new Robot();
-
-            // Указываем область экрана для захвата
-            Rectangle captureRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
-
-            // Захватываем изображение
-            BufferedImage screenImage = robot.createScreenCapture(captureRect);
-
-            return screenImage;
-        } catch (AWTException e) {
-            e.printStackTrace();
-            return null;
+        for (String name : names) {
+            System.out.println(name);
         }
-    }
 
-    public static BufferedImage crop(BufferedImage image, int x, int y, int width, int height) {
-        // Обрезаем изображение
-        return image.getSubimage(x, y, width, height);
     }
 }

@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/output/image.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/image.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output/image.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/b3g/B3GToJpegConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/b3g/B3GToJpegConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/b3g/B3GToJpegConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/b3g/FileReadWrite.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/b3g/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/b3g/ReadBinaryFile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,15 +63,15 @@
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "corretto-11",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/1. Документы/Edication/2. Java/java_edication/src/b3g",
+    "last_opened_file_path": "C:/Users/JONSBO/Documents/My Files/Разработка/2. Edication/2. java",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.lookFeel",
     "vue.rearranger.settings.migration": "true"
   }
@@ -83,20 +85,7 @@
       <recent name="E:\1. Документы\Edication\2. Java\java_edication\bin\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MetaInfoForm">
-    <configuration name="B3GParser" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.b3g.B3GParser" />
-      <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.b3g.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="B3GToJpegConverter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.b3g.B3GToJpegConverter" />
       <module name="java_edication" />
@@ -116,6 +105,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="src.b3g.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.screen.Main" />
+      <module name="java_edication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.screen.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -150,7 +152,7 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.B3GParser" />
+      <item itemvalue="Application.Main" />
       <item itemvalue="Application.B3GToJpegConverter" />
       <item itemvalue="Application.FileReadWrite" />
       <item itemvalue="Application.MetaInfoForm" />
@@ -158,11 +160,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.MetaInfoForm" />
         <item itemvalue="Application.FileReadWrite" />
         <item itemvalue="Application.ReadBinaryFile" />
         <item itemvalue="Application.B3GToJpegConverter" />
-        <item itemvalue="Application.B3GParser" />
       </list>
     </recent_temporary>
   </component>
@@ -180,6 +182,8 @@
       <workItem from="1728030851599" duration="1538000" />
       <workItem from="1728032399579" duration="135000" />
       <workItem from="1728032556982" duration="10724000" />
+      <workItem from="1728115430427" duration="234000" />
+      <workItem from="1728115673132" duration="3057000" />
     </task>
     <servers />
   </component>

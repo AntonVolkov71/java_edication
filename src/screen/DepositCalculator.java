@@ -1,11 +1,18 @@
 package src.screen;
 
+import java.util.Random;
+
+
 public class DepositCalculator {
+
+
     public static void main(String[] args) {
-        System.out.println();
+        System.out.println("sssss");
+        Random ran = new Random();
 
-        for (String arg : args) {
+        System.out.println(ran.nextInt(1));
 
-        }
     }
+
+
 }

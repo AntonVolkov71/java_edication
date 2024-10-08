@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/DepositCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/DepositCalculator.java" afterDir="false" />
-    </list>
+    <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -191,7 +187,7 @@
       <workItem from="1728032556982" duration="10724000" />
       <workItem from="1728115430427" duration="234000" />
       <workItem from="1728115673132" duration="3057000" />
-      <workItem from="1728380297475" duration="7975000" />
+      <workItem from="1728380297475" duration="8741000" />
     </task>
     <servers />
   </component>

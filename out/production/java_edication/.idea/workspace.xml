@@ -7,7 +7,9 @@
     <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/DepositCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/DepositCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/DepositCalculator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/NoteBook.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/screen/NoteBook.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +19,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -51,6 +54,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.B3GParser.executor&quot;: &quot;Run&quot;,
     &quot;Application.B3GToJpegConverter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DepositCalculator.executor&quot;: &quot;Run&quot;,
     &quot;Application.FileReadWrite.executor&quot;: &quot;Run&quot;,
     &quot;Application.Hello.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
@@ -90,7 +94,7 @@
       <recent name="E:\1. Документы\Edication\2. Java\java_edication\bin\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.DepositCalculator">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="DepositCalculator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.screen.DepositCalculator" />
       <module name="java_edication" />
@@ -165,8 +169,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.DepositCalculator" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.DepositCalculator" />
         <item itemvalue="Application.MetaInfoForm" />
         <item itemvalue="Application.FileReadWrite" />
         <item itemvalue="Application.ReadBinaryFile" />
@@ -189,7 +193,8 @@
       <workItem from="1728032556982" duration="10724000" />
       <workItem from="1728115430427" duration="234000" />
       <workItem from="1728115673132" duration="3057000" />
-      <workItem from="1728380297475" duration="1291000" />
+      <workItem from="1728380297475" duration="9325000" />
+      <workItem from="1728479726101" duration="2494000" />
     </task>
     <servers />
   </component>

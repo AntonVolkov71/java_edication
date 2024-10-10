@@ -219,9 +219,12 @@
 
 ### Хеш Таблицы
 
+- он же словарь или ассоциативный массив (мапа, таблица)
+- отображение сопоставление каждому объекту первого множества ровно один объект второго
 - java.util.HashMap - вместо индекса используется ключ
 - HashMap<String, Integer> ages = new HashMap<>();
     - не может быть два одинаковых ключа
+    - ключи без определенного порядка
     - ключ может быть: число, символ, строка, объект
     - если нет ключа вернёт Null
     - put(K key, V value) - вставка
@@ -231,6 +234,24 @@
     - clear() - полностью очистка
     - containsKey(Object key) - проверка по ключу, вернет Boolean
     - containsValue(Object value) - проверка по значению, вернет Boolean
+- интерфейс Map - родитель для всех хеш-таблиц
+    - put(K key, V value) - вставка (запись), если есть перезапишет
+    - containsKey(Object key) - содержит ключ или нет
+    - containsValue(Object value) - содержит значение или нет
+    - get(Object value) - содержит значение или нет (вернет null)
+    - getOrDefault(Object key, V defaultValue) - если ключа нет, вернет значение по умолчанию
+    - size() - размер по ключам
+    - isEmpty() - пустой или нет
+    - remove(Object key), clear() - удаление по ключу (возвращает значение или null)
+    - keySet(), values(), entrySet() - итерирует по ключам, значениям, ключ+значение
+    - интерфейсы
+        - представляют дополнительные операции, если ключи хранятся в отсортированном виде
+            - SortedMap
+            - NavigableMap
+    - классы
+        - TreeMap
+- LinkedHashMap
+    - ключи хранятся в том порядке, в каком добавляются
 
 ### Object
 
@@ -458,9 +479,11 @@
 - Классический
     - можем работать с типом который присвоили объекту
         - если несколько интерфейсов реализовано, то доступны будут только те методы, которые есть у этого типа)
+    - основан на расширении от родительского класса, то есть наследники связаны родительским типом
 - Ad-hoc полиморфизм
     - динамический - основан на переопределении метода в наследуемых классах, метод будет вызван их того типа объекта,
       через который создали
+        - в отличии от классического, расширение от интерфейса, нет необходимости наследования, более гибкий
     - статический - перегрузка методов
 - Параметрический
     - поведение класса или метода, у которых все равно какой типа данные (Дженерики как TS)
@@ -500,6 +523,7 @@
 - при компиляции не будет ошибки, если наследника попробовать явно привести другого наследника
     - только при выполнении программы
 - instanceof - проверка типа
+- ограничения для дженериков <T extends Number>, передаваемый дженерик должен быть каким либо числом
 
 ```
      interface Document {}
@@ -511,4 +535,225 @@
      
      // можно проверить
      boolean isPassport = document instanceof RussianPassport;
+```
+
+### Алгоритмы
+
+- Асимптотическая сложность - количество операций, выполняемых алгоритмом
+    - O(n) - линейный - растет линейно
+    - O(log(n)) - логарифмический - двоичный логарифм
+    - O(1) - константный - постоянный
+    - O(n^2) - квадратная
+
+### Сортировка
+
+- слиянием - O(n * log(n)), n - памяти, устойчивая, может поддерживать сортировку по нескольким параметрам
+- быстрая - O(n * log(n)) - память не требуется, неустойчивая
+- вставками (insertion sort) O(n^2) - используется на маленьких объемах данных
+    - разделяет массив на две части: отсортированную и не отсортированную
+    - в начале в отсортированной части 0 элементов
+    - на каждом шаге рассматриваем очередной элемент и пытаемся вставить в правильное место
+- поразрядная - O(n) но только при определенных условиях
+    - подсчитывает количество вхождений, а затем выводит в определенном порядке столько раз, сколько встречались
+    - заранее известен диапазон сортируемых значений
+
+### Структуры данных
+
+- это совокупность трех компонентов:
+    - набор данных
+    - отношение между ними
+    - все методы по управлению этими данными
+- в Java за это отвечают коллекции - Java Collections Framework
+
+### Иерархия коллекций
+
+- Вершина первой части - интерфейс Iterable<T>
+    - представляет инструменты для обхода, перебора слева направо
+    - помимо forEach, можно воспользоваться Итератором
+        - hasNext(), next()
+    - прямой наследник интерфейс Collection<T>, его наследуют три интерфейса:
+        - Set<T> - каждый элемент уникален
+        - Queue<T> - элементы располагаются один за другим согласно очереди - FIFO
+        - List<T> - создание списков, элементы могут повторяться, произвольный порядок, могут расширяться, сортировка
+            - LinkedList<T> - двунаправленный связный список
+                - наследуется от AbstractSequentialList<T> последовательный обход элементов друг за другом.
+                - операции могут применяться с начала или конца
+                - addFirst(), addLast() - добавляет в начало, конец
+                - getFirst(), getLast() - получить первый, последний
+                - removeFirst(), removeLast() - удаляет из начала, конца
+                - add(int, T), remove(int), get(int) - операции по индексу
+                - size() - размер
+            - ArrayList<T> - основан на массиве список
+                - динамический массив
+                - два параметра:
+                    - размер
+                    - вместимость - число элементов, потенциально могут храниться, по умолчанию 10
+                        - увеличивается на 50% после вместимость == размер
+                - не только реализует List<T>, но и AbstractList<T>
+                    - AbstractList<T> реализует List<T>
+            - методы List<T>:
+                - add(E e), add(int index, E e) - index индекс позиции вставки
+                - get(int index) - получение по индексу
+                - set(int index, E e ) - замена элемента по индексу
+                - remove(E e), remove(int index) - удаление по элементу, по индексу
+            - два способа преобразования массива или набора случайных чисел:
+                - Arrays.asList(...) - можно создать и заполнить небольшой список одним выражением
+                ```
+                   String[] citiesArray = {"Воронеж", "Южно-Сахалинск", "Иркутск"};
+
+                   List<String> cities = Arrays.asList(citiesArray);
+
+                    System.out.println(cities); // [Воронеж, Южно-Сахалинск, Иркутск]
+                ```
+                - List.of(...)
+                ```
+                    String[] citiesArray = {"Воронеж", "Южно-Сахалинск", "Иркутск"};
+
+                    List<String> cities = List.of(citiesArray);
+
+                    System.out.println(cities);
+                ```
+                - при таком преобразовании, списки неизменяемы, не поддерживают удаление, добавление
+        - методы Collection<T>:
+            - add(E e) - добавление
+            - contains(Object o) - проверка наличия
+            - remove(Object o) - удаление
+            - size() - количество элементов
+            - isEmpty() - есть ли в коллекции элементы
+            - поддерживает System.out.println(collection)
+            - add[contains][remove]All - добавление, проверка наличия, удаления сразу несколько
+              ```
+                Collection<String> colors = new ArrayList<>();
+                Collection<String> colorsAdditional = new ArrayList<>();
+              
+                colors.addAll(colorsAdditional);
+              ```
+            - clear() - очистка
+            - toArray() - трансформация в массив
+- Вершина второй части - интерфейс Map<K, V> - ключ со значением типа V
+    - задает однозначную одностороннюю связь
+    - наследник HashMap<K,V>
+
+### Comparator
+
+- сравнение Comparator<T>
+- помогает при сортировке сложных объектов
+- добавляет метод int compare(T, T) - необходимо переопределить
+- для лексикографической сортировки слов без учёта регистра
+    - return String.CASE_INSENSITIVE_ORDER.compare(item1.name, item2.name);
+- Классы-обёртки, такие, как Integer или Double
+    - return Integer.compare(item1.price, item2.price);
+
+```
+class Item {
+
+    public final String name; // название товара
+    public final int price; // цена
+    public final int popularity; // популярность
+
+    public Item(String name, int price, int popularity) {
+        this.name = name;
+        this.price = price;
+        this.popularity = popularity;
+    }
+
+    // сразу переопределим toString(), чтобы потом выводить содержание списка
+    @Override
+    public String toString() {
+        return "Item{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                ", popularity=" + popularity +
+                '}';
+    }
+}
+
+
+class CompareItem implements Comparator<Item> {
+    @Override
+    public int compare(Item item1, Item item2) {
+//        // сравниваем товары — более дорогой должен быть дальше в списке
+//        if (item1.price > item2.price) {
+//            return 1;
+//
+//            // более дешёвый — ближе к началу списка
+//        } else if (item1.price < item2.price) {
+//            return -1;
+//
+//            // если стоимость равна, нужно вернуть 0
+//        } else {
+//            return 0;
+//        }
+
+        return item1.price - item2.price;
+    }
+}
+
+public class CompareTest {
+    public static void main(String[] args) {
+        // создаём список товаров
+        List<Item> items = new ArrayList<>();
+        items.add(new Item("Рубашка", 4500, 37));
+        items.add(new Item("Носки", 55, 8));
+        items.add(new Item("Толстовка", 1399, 74));
+        items.add(new Item("Носки", 169, 19));
+
+        System.out.println("До сортировки:");
+        System.out.println(items);
+
+        CompareItem compareItem = new CompareItem();
+        items.sort(compareItem);
+
+        System.out.println("После сортировки:");
+        System.out.println(items);
+    }
+}
+```
+
+- метод reversed() - разворачивание
+
+```
+CompareItem compareItem = new CompareItem();
+items.sort(compareItem);
+
+System.out.println("После сортировки:");
+System.out.println(items);
+
+Comparator<Item> reversedComparator = compareItem.reversed();
+
+items.sort(reversedComparator);
+System.out.println(items);
+```
+
+### Класс помощник Collections
+
+- утилитарный класс
+- задача упрощения работы с другими классами
+- методы
+    - emptyList() - создает пустой список
+    - singletonList(T) - создает список из единственного элемента
+    - nCopies(int, T) - создает список, где элемент повторен n раз
+    - при этом эти списки Неизменяемы!!
+    - fill(List<T>, T) - заменить все значения один значением
+    - copy(List<T>, List<T>) - копирование (замена) из второго в первый
+        - список куда копируется должен быть по размеру не меньше копируемого
+    - sort(List<T>, Comparator<T>) - сортировка
+    - min[max](Collection<T>)
+
+```
+    final List<String> emptyList = Collections.emptyList();
+    final List<String> singletonList = Collections.singletonList("Привет, мир!");
+    final List<String> nCopiesList = Collections.nCopies(5, "Java");
+    
+    ArrayList<String> fruits = new ArrayList<>();
+    fruits.add("Банан");
+    fruits.add("Апельсин");
+    fruits.add("Яблоко");
+    fruits.add("Груша");
+
+    System.out.println(fruits);
+
+    Collections.sort(fruits, String.CASE_INSENSITIVE_ORDER);
+
+    System.out.println(fruits);
 ```

@@ -1,18 +1,34 @@
 package src.algorithm;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class HAshMapTest {
     public static void main(String[] args) {
-        Map<String, String> countriesAndContinents = new HashMap<>();
-
-        countriesAndContinents.put("Марокко", "Африка");
-        countriesAndContinents.put("Танзания", "Африка");
-
-        for (Map.Entry<String, String> el : countriesAndContinents.entrySet()) {
-            System.out.println(el.getKey());
-            System.out.println(el.getValue());
+        try {
+            System.out.println(getPositiveInteger("10"));
+            System.out.println(getPositiveInteger("abc"));
+        } catch (IncorrectInputStringException e) {
+            System.out.println("Необходимо ввести число");
+        } catch (NumberShouldBePositiveException e) {
+            System.out.println("Число должно быть положительным");
         }
     }
+
+    public static int getPositiveInteger(final String input)
+        // указываем исключения через запятую
+            throws NumberShouldBePositiveException, IncorrectInputStringException {
+        try {
+            int value = Integer.parseInt(input);
+            if (value < 0) {
+                throw new NumberShouldBePositiveException();
+            }
+            return value;
+        } catch (NumberFormatException exception) {
+            throw new IncorrectInputStringException();
+        }
+    }
+}
+
+class NumberShouldBePositiveException extends Exception {
+}
+
+class IncorrectInputStringException extends Exception {
 }

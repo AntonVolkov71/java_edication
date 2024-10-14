@@ -223,9 +223,11 @@
 - отображение сопоставление каждому объекту первого множества ровно один объект второго
 - java.util.HashMap - вместо индекса используется ключ
 - HashMap<String, Integer> ages = new HashMap<>();
+    - O(1) - поиск по значению, добавление, обновление, удаление
     - не может быть два одинаковых ключа
     - ключи без определенного порядка
     - ключ может быть: число, символ, строка, объект
+        - !обязательно переопределить hashCode(), equals()
     - если нет ключа вернёт Null
     - put(K key, V value) - вставка
     - values() - получение массива значений
@@ -244,14 +246,87 @@
     - isEmpty() - пустой или нет
     - remove(Object key), clear() - удаление по ключу (возвращает значение или null)
     - keySet(), values(), entrySet() - итерирует по ключам, значениям, ключ+значение
+  ```
+    Map<String, String> countriesAndContinents = new HashMap<>();
+
+    countriesAndContinents.put("Марокко", "Африка");
+    countriesAndContinents.put("Танзания", "Африка");
+    
+    for (Map.Entry<String, String> el : countriesAndContinents.entrySet()) {
+        System.out.println(el.getKey());
+        System.out.println(el.getValue());
+    }
+  ```
     - интерфейсы
         - представляют дополнительные операции, если ключи хранятся в отсортированном виде
             - SortedMap
             - NavigableMap
     - классы
         - TreeMap
+            - наследуется от NavigableMap <-- SortedMap
+            - O(log n) - базовые операции, медленнее чем HashMap, так как внутри структура дерева
+            - public TreeMap() - новая пустая хеш-таблица, без пустых ячеек
+            - public TreeMap(Comparator <? super K> comparator) - передается компаратор - правила сравнения ключей
+            - public TreeMap(Map<? extends K, ? extends V> m) - заполняет данными из переданной хеш-таблицы любого типа
+            - public TreeMap(SortedMap<K, ? extends V> m)- заполняет данными из переданной хеш-таблицы, но типа
+              SortedMap
+            ```
+                   // можно реализовать несколько вариантов Сортировки
+                   Comparator<User> userComparator = new Comparator<>() {
+                     @Override
+                     public int compare(User user1, User user2) {
+                       return user1.userId - user2.userId;
+                     }
+                   };
+
+                   Map<User, String> users = new TreeMap<>(userComparator);
+          
+                    // интерфейс Comparable, когда Один способ сортировки
+                     class User implements Comparable<User> {
+                       public Integer userId;
+                       public String username;
+                        // ... и другие поля пользователя
+
+                     @Override
+                     public int compareTo(User o) {
+                      return this.userId - o.userId;
+                     }
+                      }
+            ```
+            - методы
+                - firstEntry(), firstKey() - первая запись по порядку (ключ-значение, ключ)
+                - lastEntry(), lastKey() - последние данные
+                - pollFirstEntry(), pollLastEntry() - возвращает данные и удаляет из таблицы
+                - lowerEntry(K key), higherEntry(K key) - соседние данные
 - LinkedHashMap
+    - O(1) - поиск по значению, добавление, обновление, удаление,
+        - но чуть медленнее, так как хранить двусвязный список
+
     - ключи хранятся в том порядке, в каком добавляются
+        - 2 способа
+            - в порядке добавления записей - первая первой, последняя последней
+            - в порядке доступа к записям - при итерации первой будет, к которой дольше всего не обращались,
+                - первой к которой было последнее обращение
+    - наследуется от HashMap
+    - конструктор создает новую хеш-таблицу со стандартными настройками
+        - 16 пустых ячеек
+        - коэффициент заполнения 75%
+        - ключи будут отсортированы в порядке добавления
+        - public LinkedHashMap(Map<? extends K, ? extends V> m)
+            - заполняет данными из параметра m, создает идентичную копию переданной хеш-таблицы
+        - public LinkedHashMap(int initialCapacity)
+            - создает объект, в таблице сразу создано переданное количество ячеек
+        - public LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)
+            - какой тип сортировки ключей, accessOder == true - в порядке доступа, false - в порядке добавления
+              записей (по умолчанию)
+            -
+
+### Коэффициент заполняемости HashMap
+
+- по умолчанию 75%
+- можно задать
+    - public HashMap(int initialCapacity, float loadFactor)
+    - loadFactor = 0.6 -> 60%
 
 ### Object
 
@@ -478,7 +553,7 @@
 - позволяет программе взаимодействовать с объектами разных типов одинаково, если у них общий предок или интерфейс
 - Классический
     - можем работать с типом который присвоили объекту
-        - если несколько интерфейсов реализовано, то доступны будут только те методы, которые есть у этого типа)
+        - если несколько интерфейсов реализовано, то доступны будут только те методы, которые есть у этого типа
     - основан на расширении от родительского класса, то есть наследники связаны родительским типом
 - Ad-hoc полиморфизм
     - динамический - основан на переопределении метода в наследуемых классах, метод будет вызван их того типа объекта,
@@ -621,7 +696,7 @@
             - size() - количество элементов
             - isEmpty() - есть ли в коллекции элементы
             - поддерживает System.out.println(collection)
-            - add[contains][remove]All - добавление, проверка наличия, удаления сразу несколько
+            - add | contains | remove All - добавление, проверка наличия, удаления сразу несколько
               ```
                 Collection<String> colors = new ArrayList<>();
                 Collection<String> colorsAdditional = new ArrayList<>();
@@ -738,7 +813,7 @@ System.out.println(items);
     - copy(List<T>, List<T>) - копирование (замена) из второго в первый
         - список куда копируется должен быть по размеру не меньше копируемого
     - sort(List<T>, Comparator<T>) - сортировка
-    - min[max](Collection<T>)
+    - min | max (Collection<T>)
 
 ```
     final List<String> emptyList = Collections.emptyList();
@@ -757,3 +832,312 @@ System.out.println(items);
 
     System.out.println(fruits);
 ```
+
+## Множество Set
+
+- набор уникальных данных!! но хаотичны, не сохраняет порядок объектов
+- проверка на наличие элемента O(1)
+- наследуется от Collection
+- работает быстрее других, применяется часто
+- элементы не упорядочены
+- его наследники
+    - SortedSet -> NavigableSet -> TreeSet
+    - AbstractSet
+        - TreeSet
+        - HashSet -> LinkedHashSet
+- методы
+    - add (E e) - возвращает true если сохранился, false - еси существует, при этом не сохранит
+    - addAll(Collection <? extends E> c) - добавить список или множество, при этом если хотя бы один содержится вернет
+      False
+    - contains(Object o) - имеется или нет
+    - remove(Object o ) - удаление объекта
+    - isEmpty(), size()
+- конструкторы
+    - public HashSet()
+        - пустое множество без параметров
+    - public HashSet(Collection<? extends E> c)
+        - создает множество из списка или множества
+        - останутся только уникальные
+    - public HashSet(int initialCapacity, float loadFactor)
+        - количество созданных ячеек и коэффициент заполнения
+- LinkedHashSet
+    - сохраняет порядок добавленных объектов
+    - аналогичен LinkedHashMap
+    - O(1) - базовые операции
+- TreeSet
+    - аналогичен TreeMap
+    - O(log n) - базовые операции
+
+### Деревья
+
+- способ представить информацию в виде иерархической структуры, где элементы ниже по иерархии, зависят от выше
+
+### String
+
+- строки, созданные не через литерал, не попадут в один и тот же пул, и не будут ==, сравнение new String через
+  String.equals()
+- методы
+    - length(), isEmpty()
+    - trim() - удаляет пробелы в начале и в конце (не меняет исходное)
+    - toUpperCase(), toLowCase() - изменение регистра
+    - charAt(int index) - получить символ по индексу
+    - startWish(), endsWish() - начинается, заканчивается
+    - contains() - содержит
+    - substring(int beginIndex), substring(int beginIndex, int endIndex) - получить подстроку под индексам
+        - endIndex - исключается
+    - split(String regex) - из строки в массив строк
+        - regex - для спец символов необходимо \\ - "\\*"
+            - <(>,   <)>, <[>, <{>, <.>, <?>, <*>, <+>,  <|>, <^>, <\>.
+- из массива в строку
+    - String.join(String delimiter, String... strs)
+    ```
+        String[] arrayOfPets = new String[]{
+                "Кот Батончик",
+                "Хомяк Рафаэлка",
+                "Попугай Картошка"
+        };
+
+        String str = String.join(", ", arrayOfPets);
+    ```
+    - этим же методом можно создать строку из нескольких строк
+        ```
+          String cat = "Кот Батончик";
+          String pet = "Хомяк Рафаэлка";
+          String ara = "Попугай Картошка";
+
+          String str = String.join(", ", cat, pet, ara);  
+        ```
+
+- substring - непрерывный набор символов внутри строки
+- Замена строк (похоже как в JS)
+    - replace(String target, String replacement), replaceFirst(String target, String replacement)
+        - replaceFirst заменит только первое вхождение
+
+### StringBuilder
+
+- позволяет менять содержание строки без создания новой
+- методы
+    - append(String str), append(String str)- вставка в конец
+    - toString() - привести к обычной строке
+    - методы String - indexOf(), lastIndex(), substring(),replace() - такие же
+    - insert(int index, String str) - вставка по индексу
+    - deleteCharAt(int index), delete(int startIndexInclusive, int endIndexExclusive)
+        - удаление одного или нескольких элементов
+    - reverse() - развернуть
+    - setLength(int newLength) - обрезка с начала
+
+### Форматирование строк
+
+- похоже как Python Шаблоны
+- оформленное отображение строк
+- String.format(String format, Object... args) - format - образец, столько же аргументов сколько в образце
+
+```
+  String[] colors = new String[]{"красный", "жёлтый", "зелёный"};
+  String trafficLight = String.format("Цвета светофора: %s, %s и %s.", colors[0], colors[1], colors[2]);
+  System.out.println(trafficLight);
+
+  // либо сразу вывести через printf
+  System.out.printf("Цвета светофора: %s, %s и %s.", colors[0], colors[1], colors[2]);
+```
+
+- символы преобразования
+    - %s — для строк (s — сокращение от string);
+        - %S, %b и т.д. — для строк поднять регистр;
+    - %d — для целых чисел (d от decimal);
+    - %f — для чисел с плавающей точкой (f от float);
+    - %b — для булевых значений (b от boolean);
+    - %c — для символов (c от char и сharacter).
+    - можно привести к типу - System.out.printf("%b", "Hello, Java!"); // получим true
+    - \n - перенос строки
+- параметры для преобразования
+    - %55s - добавит 55 символов перед переменной
+    - %-55s - добавит 55 символов после переменной
+    - %1.12s - до точки перед, после точки после
+
+### Иерархия исключений
+
+- Все исключения наследуют от одного класса — Throwable
+- checked - проверяемые, исключения, обработка которых обязательна и является частью логики приложения
+    - Если не настроить обработку проверяемых исключений, то программа не скомпилируется
+    - исключение должно быть «отловлено или объявлено выброшенным»
+- подклассы
+    - Error (unchecked)
+        - VirtualMachineError - Базовые ошибки JVM, связанные с тем, что исчерпаны ресурсы или обнаружены повреждения.
+        - OutOfMemoryError - Производный класс от VirtualMachineError, который показывает ошибки из-за нехватки памяти.
+        - StackOverflowError - Производный класс от VirtualMachineError, показывает переполнение стека из-за того, что
+          метод слишком много раз вызывал сам себя.
+        - AssertionError - Ошибка утверждения.
+        - IOError - Исключение, которое происходит при серьёзных ошибках ввода-вывода.
+        - ThreadDeath - Возникает при вызове метода Thread.stop() у потока.
+    - Exception (checked)
+        - RuntimeException (unchecked)
+            - ArithmeticException - Исключения при арифметических операциях, например деление на 0.
+            - IllegalArgumentException - Возникает при неверно переданных в метод или конструктор параметрах.
+            - IndexOutOfBoundsException - Исключение при выходе за заданный диапазон.
+            - NoSuchElementException - Данного элемента больше не существует в перечислении.
+            - NullPointerException - Приложение пытается использовать null в том месте, где требуется инициализированный
+              объект.
+            - UnsupportedOperationException - Операция не поддерживается вызываемым объектом.
+            - ClassCastException - Невозможность привести объект к заданному типу.
+        - Other Exception (checked)
+            - IOException - Это базовый класс проверяемых исключений ввода-вывода.
+            - EOFException - Исключение, которое сигнализирует о внезапном достижении конца файла или потока.
+            - FileNotFoundException - Файл по указанному пути не существует.
+            - FileSystemException - Базовый класс для исключений файловой системы, таких как ошибка доступа, попытка
+              создать уже существующий файл или удалить не пустую директорию.
+            - MalformedURLException - Неверный синтаксис при создании класса ссылки из строки.
+            - SocketException - Ошибки при создании/обрыве соединения по сокету.
+            - UnknownHostException - Невозможность определить IP-адрес узла по доменному имени.
+            - SQLException - Ошибки при работе с базой данных.
+            - TimeoutException - Исключение — происходит у методов, у которых ограничено выполнение по времени.
+            - URISyntaxException - Неверный формат универсального идентификатора ресурсов.
+- Throwable - ловит все, но не понятно какой тип ошибки
+
+```
+        try {
+            return new URI(input);
+        } catch (URISyntaxException exception) {
+            System.out.println("Ошибка: неверный синтаксис URI!");
+        } catch (NullPointerException exception) {
+            // ловим исключение NullPointerException
+            System.out.println("Ошибка: передан неинициализированный объект!");
+        }
+        return null;
+```
+
+- при цепочке Важно соблюдать правильную последовательность
+    - сначала исключения в классах-наслдениках
+    - потом родительские
+
+```
+    // правильно
+       try {
+            return (String) x;
+        } catch (ClassCastException e) {
+            System.out.println("Некорректное приведение типов");
+        } catch (RuntimeException e) {
+            System.out.println("Ошибка во время выполнения");
+        } catch (Exception e) {
+            System.out.println("Произошла неизвестная ошибка");
+        }
+    // не правильно
+        try {
+            return (String) x;
+        } catch (Exception e) {
+            System.out.println("Произошла неизвестная ошибка");
+        } catch (RuntimeException e) {
+            System.out.println("Ошибка во время выполнения");
+        } catch (ClassCastException e) {
+            System.out.println("Некорректное приведение типов");
+        }
+        return null;
+```
+
+- можно объединить типы ошибок, если их обработка, например, одинакова
+
+```
+        try {
+            new ArrayList<String>().add("1");
+        } catch (UnsupportedOperationException | IllegalArgumentException exception) {
+            System.out.println("Возникла ошибка, свяжитесь с нами!");
+        }
+```
+
+- посмотреть стек-трейс исключения - exception.printStackTrace(); // будет выведен стек-трейс ошибки
+- сообщение об ошибке коротко - exception.getMessage()
+    - лучше не использовать, может быть null
+- Throwable.getStackTrace() возвращает массив элементов StackTraceElement
+    - можно посмотреть имя класса, имя файла, строка кода
+
+```
+catch (ArithmeticException exception) {
+  for (StackTraceElement stack : exception.getStackTrace()) {
+       System.out.println(String.format("Класс: " + stack.getClassName() + ", " +
+                    "метод: " + stack.getMethodName() + ", " +
+                    "имя файла: " + stack.getFileName() + ", " +
+                    "строка кода: " + stack.getLineNumber()));
+}}
+```
+
+### Свое исключение
+
+- при создании своего класса Исключений от Exception, Можно переопределить 4 конструктора
+
+```
+public class InputException extends Exception {
+    public InputException() {
+    }
+
+    public InputException(final String message) {
+        super(message);
+    }
+
+    public InputException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public InputException(final Throwable cause) {
+        super(cause);
+    }
+}
+
+final UserInputException userInputException = new UserInputException("Ошибка ввода!");
+        try {
+            throw userInputException;
+
+        } catch (Throwable e) {
+            System.out.println("eeee " + e.getMessage());
+        }
+
+```
+
+- в свой клас можно добавлять свои методы
+
+```
+public class Main {
+    public static void main(String[] args) {
+        printRangeInteger("10", 0, 100);
+        printRangeInteger("-10", 0, 100);
+        printRangeInteger("110", 0, 100);
+        printRangeInteger("abc", 0, 100);
+    }
+
+    public static void printRangeInteger(final String inputString, final int from, final int to) {
+        try {
+            final int input = Integer.parseInt(inputString);
+            if (input < from) {
+                throw new InputException("Введённое число слишком маленькое!", input);
+            }
+            if (input > to) {
+                throw new InputException("Введённое число слишком большое!", input);
+            }
+            System.out.println(input);
+        } catch (NumberFormatException exception) {
+            System.out.println("Ошибка ввода - введено не число!");
+        } catch (InputException exception) {
+            System.out.println(exception.getDetailMessage());
+        }
+    }
+}
+
+class InputException extends Exception {
+    private final int inputValue;
+
+    public InputException(final String message, final int inputValue) {
+        super(message);
+        this.inputValue = inputValue;
+    }
+
+    public String getDetailMessage() {
+        return getMessage() + " = " + inputValue;
+    }
+}
+```
+
+#### Слово предупреждение throws
+
+- метод или конструктор может сгенерить исключение
+    - public void methodWithException() throws FirstException {}
+        - этот метод может сгенерировать исключение FirstException
+    - можно несколько throws NumberShouldBePositiveException, IncorrectInputStringException

@@ -956,3 +956,205 @@ System.out.println(items);
     - %1.12s - до точки перед, после точки после
 
 ### Иерархия исключений
+
+- Все исключения наследуют от одного класса — Throwable
+- checked - проверяемые, исключения, обработка которых обязательна и является частью логики приложения
+    - Если не настроить обработку проверяемых исключений, то программа не скомпилируется
+    - исключение должно быть «отловлено или объявлено выброшенным»
+- подклассы
+    - Error (unchecked)
+        - VirtualMachineError - Базовые ошибки JVM, связанные с тем, что исчерпаны ресурсы или обнаружены повреждения.
+        - OutOfMemoryError - Производный класс от VirtualMachineError, который показывает ошибки из-за нехватки памяти.
+        - StackOverflowError - Производный класс от VirtualMachineError, показывает переполнение стека из-за того, что
+          метод слишком много раз вызывал сам себя.
+        - AssertionError - Ошибка утверждения.
+        - IOError - Исключение, которое происходит при серьёзных ошибках ввода-вывода.
+        - ThreadDeath - Возникает при вызове метода Thread.stop() у потока.
+    - Exception (checked)
+        - RuntimeException (unchecked)
+            - ArithmeticException - Исключения при арифметических операциях, например деление на 0.
+            - IllegalArgumentException - Возникает при неверно переданных в метод или конструктор параметрах.
+            - IndexOutOfBoundsException - Исключение при выходе за заданный диапазон.
+            - NoSuchElementException - Данного элемента больше не существует в перечислении.
+            - NullPointerException - Приложение пытается использовать null в том месте, где требуется инициализированный
+              объект.
+            - UnsupportedOperationException - Операция не поддерживается вызываемым объектом.
+            - ClassCastException - Невозможность привести объект к заданному типу.
+        - Other Exception (checked)
+            - IOException - Это базовый класс проверяемых исключений ввода-вывода.
+            - EOFException - Исключение, которое сигнализирует о внезапном достижении конца файла или потока.
+            - FileNotFoundException - Файл по указанному пути не существует.
+            - FileSystemException - Базовый класс для исключений файловой системы, таких как ошибка доступа, попытка
+              создать уже существующий файл или удалить не пустую директорию.
+            - MalformedURLException - Неверный синтаксис при создании класса ссылки из строки.
+            - SocketException - Ошибки при создании/обрыве соединения по сокету.
+            - UnknownHostException - Невозможность определить IP-адрес узла по доменному имени.
+            - SQLException - Ошибки при работе с базой данных.
+            - TimeoutException - Исключение — происходит у методов, у которых ограничено выполнение по времени.
+            - URISyntaxException - Неверный формат универсального идентификатора ресурсов.
+- Throwable - ловит все, но не понятно какой тип ошибки
+
+```
+        try {
+            return new URI(input);
+        } catch (URISyntaxException exception) {
+            System.out.println("Ошибка: неверный синтаксис URI!");
+        } catch (NullPointerException exception) {
+            // ловим исключение NullPointerException
+            System.out.println("Ошибка: передан неинициализированный объект!");
+        }
+        return null;
+```
+
+- при цепочке Важно соблюдать правильную последовательность
+    - сначала исключения в классах-наслдениках
+    - потом родительские
+
+```
+    // правильно
+       try {
+            return (String) x;
+        } catch (ClassCastException e) {
+            System.out.println("Некорректное приведение типов");
+        } catch (RuntimeException e) {
+            System.out.println("Ошибка во время выполнения");
+        } catch (Exception e) {
+            System.out.println("Произошла неизвестная ошибка");
+        }
+    // не правильно
+        try {
+            return (String) x;
+        } catch (Exception e) {
+            System.out.println("Произошла неизвестная ошибка");
+        } catch (RuntimeException e) {
+            System.out.println("Ошибка во время выполнения");
+        } catch (ClassCastException e) {
+            System.out.println("Некорректное приведение типов");
+        }
+        return null;
+```
+
+- можно объединить типы ошибок, если их обработка, например, одинакова
+
+```
+        try {
+            new ArrayList<String>().add("1");
+        } catch (UnsupportedOperationException | IllegalArgumentException exception) {
+            System.out.println("Возникла ошибка, свяжитесь с нами!");
+        }
+```
+
+- посмотреть стек-трейс исключения - exception.printStackTrace(); // будет выведен стек-трейс ошибки
+- сообщение об ошибке коротко - exception.getMessage()
+    - лучше не использовать, может быть null
+- Throwable.getStackTrace() возвращает массив элементов StackTraceElement
+    - можно посмотреть имя класса, имя файла, строка кода
+
+```
+catch (ArithmeticException exception) {
+  for (StackTraceElement stack : exception.getStackTrace()) {
+       System.out.println(String.format("Класс: " + stack.getClassName() + ", " +
+                    "метод: " + stack.getMethodName() + ", " +
+                    "имя файла: " + stack.getFileName() + ", " +
+                    "строка кода: " + stack.getLineNumber()));
+}}
+```
+
+### Свое исключение
+
+- при создании своего класса Исключений от Exception, Можно переопределить 4 конструктора
+
+```
+public class InputException extends Exception {
+    public InputException() {
+    }
+
+    public InputException(final String message) {
+        super(message);
+    }
+
+    public InputException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
+
+    public InputException(final Throwable cause) {
+        super(cause);
+    }
+}
+
+final UserInputException userInputException = new UserInputException("Ошибка ввода!");
+        try {
+            throw userInputException;
+
+        } catch (Throwable e) {
+            System.out.println("eeee " + e.getMessage());
+        }
+
+```
+
+- в свой клас можно добавлять свои методы
+
+```
+public class Main {
+    public static void main(String[] args) {
+        printRangeInteger("10", 0, 100);
+        printRangeInteger("-10", 0, 100);
+        printRangeInteger("110", 0, 100);
+        printRangeInteger("abc", 0, 100);
+    }
+
+    public static void printRangeInteger(final String inputString, final int from, final int to) {
+        try {
+            final int input = Integer.parseInt(inputString);
+            if (input < from) {
+                throw new InputException("Введённое число слишком маленькое!", input);
+            }
+            if (input > to) {
+                throw new InputException("Введённое число слишком большое!", input);
+            }
+            System.out.println(input);
+        } catch (NumberFormatException exception) {
+            System.out.println("Ошибка ввода - введено не число!");
+        } catch (InputException exception) {
+            System.out.println(exception.getDetailMessage());
+        }
+    }
+}
+
+class InputException extends Exception {
+    private final int inputValue;
+
+    public InputException(final String message, final int inputValue) {
+        super(message);
+        this.inputValue = inputValue;
+    }
+
+    public String getDetailMessage() {
+        return getMessage() + " = " + inputValue;
+    }
+}
+```
+
+#### Слово предупреждение throws
+
+- метод или конструктор может сгенерить исключение
+    - public void methodWithException() throws FirstException {}
+        - этот метод может сгенерировать исключение FirstException
+    - можно несколько throws NumberShouldBePositiveException, IncorrectInputStringException
+
+#### Final - обработка исключений
+
+- если catch не будет, то исключение будет выброшено после final
+- return  !!лучше НЕ использовать
+
+```
+try {
+    // действие, которое может вызвать ошибку
+} catch (Exception exception) {
+    // действие по обработке исключений
+} finally {
+    // действие, которое должно вызваться всегда
+}
+```
+
+### Работа с файлами

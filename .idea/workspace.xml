@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/lection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +89,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "editing.templates",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -203,7 +202,9 @@
       <workItem from="1728115430427" duration="234000" />
       <workItem from="1728115673132" duration="3057000" />
       <workItem from="1728380297475" duration="9325000" />
-      <workItem from="1728479726101" duration="19419000" />
+      <workItem from="1728479726101" duration="19549000" />
+      <workItem from="1728895915781" duration="2276000" />
+      <workItem from="1728898354124" duration="9465000" />
     </task>
     <servers />
   </component>
@@ -258,11 +259,6 @@
           <url>file://$PROJECT_DIR$/src/algorithm/InsertionSort.java</url>
           <line>4</line>
           <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/algorithm/HAshMapTest.java</url>
-          <line>5</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

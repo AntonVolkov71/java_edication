@@ -223,6 +223,7 @@
 - отображение сопоставление каждому объекту первого множества ровно один объект второго
 - java.util.HashMap - вместо индекса используется ключ
 - HashMap<String, Integer> ages = new HashMap<>();
+    - O(1) - поиск по значению, добавление, обновление, удаление
     - не может быть два одинаковых ключа
     - ключи без определенного порядка
     - ключ может быть: число, символ, строка, объект
@@ -262,8 +263,63 @@
             - NavigableMap
     - классы
         - TreeMap
+            - наследуется от NavigableMap <-- SortedMap
+            - O(log n) - базовые операции, медленнее чем HashMap, так как внутри структура дерева
+            - public TreeMap() - новая пустая хеш-таблица, без пустых ячеек
+            - public TreeMap(Comparator <? super K> comparator) - передается компаратор - правила сравнения ключей
+            - public TreeMap(Map<? extends K, ? extends V> m) - заполняет данными из переданной хеш-таблицы любого типа
+            - public TreeMap(SortedMap<K, ? extends V> m)- заполняет данными из переданной хеш-таблицы, но типа
+              SortedMap
+            ```
+                   // можно реализовать несколько вариантов Сортировки
+                   Comparator<User> userComparator = new Comparator<>() {
+                     @Override
+                     public int compare(User user1, User user2) {
+                       return user1.userId - user2.userId;
+                     }
+                   };
+
+                   Map<User, String> users = new TreeMap<>(userComparator);
+          
+                    // интерфейс Comparable, когда Один способ сортировки
+                     class User implements Comparable<User> {
+                       public Integer userId;
+                       public String username;
+                        // ... и другие поля пользователя
+
+                     @Override
+                     public int compareTo(User o) {
+                      return this.userId - o.userId;
+                     }
+                      }
+            ```
+            - методы
+                - firstEntry(), firstKey() - первая запись по порядку (ключ-значение, ключ)
+                - lastEntry(), lastKey() - последние данные
+                - pollFirstEntry(), pollLastEntry() - возвращает данные и удаляет из таблицы
+                - lowerEntry(K key), higherEntry(K key) - соседние данные
 - LinkedHashMap
+    - O(1) - поиск по значению, добавление, обновление, удаление,
+        - но чуть медленнее, так как хранить двусвязный список
+
     - ключи хранятся в том порядке, в каком добавляются
+        - 2 способа
+            - в порядке добавления записей - первая первой, последняя последней
+            - в порядке доступа к записям - при итерации первой будет, к которой дольше всего не обращались,
+                - первой к которой было последнее обращение
+    - наследуется от HashMap
+    - конструктор создает новую хеш-таблицу со стандартными настройками
+        - 16 пустых ячеек
+        - коэффициент заполнения 75%
+        - ключи будут отсортированы в порядке добавления
+        - public LinkedHashMap(Map<? extends K, ? extends V> m)
+            - заполняет данными из параметра m, создает идентичную копию переданной хеш-таблицы
+        - public LinkedHashMap(int initialCapacity)
+            - создает объект, в таблице сразу создано переданное количество ячеек
+        - public LinkedHashMap(int initialCapacity, float loadFactor, boolean accessOrder)
+            - какой тип сортировки ключей, accessOder == true - в порядке доступа, false - в порядке добавления
+              записей (по умолчанию)
+            -
 
 ### Коэффициент заполняемости HashMap
 
@@ -497,7 +553,7 @@
 - позволяет программе взаимодействовать с объектами разных типов одинаково, если у них общий предок или интерфейс
 - Классический
     - можем работать с типом который присвоили объекту
-        - если несколько интерфейсов реализовано, то доступны будут только те методы, которые есть у этого типа)
+        - если несколько интерфейсов реализовано, то доступны будут только те методы, которые есть у этого типа
     - основан на расширении от родительского класса, то есть наследники связаны родительским типом
 - Ad-hoc полиморфизм
     - динамический - основан на переопределении метода в наследуемых классах, метод будет вызван их того типа объекта,
@@ -640,7 +696,7 @@
             - size() - количество элементов
             - isEmpty() - есть ли в коллекции элементы
             - поддерживает System.out.println(collection)
-            - add[contains][remove]All - добавление, проверка наличия, удаления сразу несколько
+            - add | contains | remove All - добавление, проверка наличия, удаления сразу несколько
               ```
                 Collection<String> colors = new ArrayList<>();
                 Collection<String> colorsAdditional = new ArrayList<>();
@@ -757,7 +813,7 @@ System.out.println(items);
     - copy(List<T>, List<T>) - копирование (замена) из второго в первый
         - список куда копируется должен быть по размеру не меньше копируемого
     - sort(List<T>, Comparator<T>) - сортировка
-    - min[max](Collection<T>)
+    - min | max (Collection<T>)
 
 ```
     final List<String> emptyList = Collections.emptyList();
@@ -776,3 +832,127 @@ System.out.println(items);
 
     System.out.println(fruits);
 ```
+
+## Множество Set
+
+- набор уникальных данных!! но хаотичны, не сохраняет порядок объектов
+- проверка на наличие элемента O(1)
+- наследуется от Collection
+- работает быстрее других, применяется часто
+- элементы не упорядочены
+- его наследники
+    - SortedSet -> NavigableSet -> TreeSet
+    - AbstractSet
+        - TreeSet
+        - HashSet -> LinkedHashSet
+- методы
+    - add (E e) - возвращает true если сохранился, false - еси существует, при этом не сохранит
+    - addAll(Collection <? extends E> c) - добавить список или множество, при этом если хотя бы один содержится вернет
+      False
+    - contains(Object o) - имеется или нет
+    - remove(Object o ) - удаление объекта
+    - isEmpty(), size()
+- конструкторы
+    - public HashSet()
+        - пустое множество без параметров
+    - public HashSet(Collection<? extends E> c)
+        - создает множество из списка или множества
+        - останутся только уникальные
+    - public HashSet(int initialCapacity, float loadFactor)
+        - количество созданных ячеек и коэффициент заполнения
+- LinkedHashSet
+    - сохраняет порядок добавленных объектов
+    - аналогичен LinkedHashMap
+    - O(1) - базовые операции
+- TreeSet
+    - аналогичен TreeMap
+    - O(log n) - базовые операции
+
+### Деревья
+
+- способ представить информацию в виде иерархической структуры, где элементы ниже по иерархии, зависят от выше
+
+### String
+
+- строки, созданные не через литерал, не попадут в один и тот же пул, и не будут ==, сравнение new String через
+  String.equals()
+- методы
+    - length(), isEmpty()
+    - trim() - удаляет пробелы в начале и в конце (не меняет исходное)
+    - toUpperCase(), toLowCase() - изменение регистра
+    - charAt(int index) - получить символ по индексу
+    - startWish(), endsWish() - начинается, заканчивается
+    - contains() - содержит
+    - substring(int beginIndex), substring(int beginIndex, int endIndex) - получить подстроку под индексам
+        - endIndex - исключается
+    - split(String regex) - из строки в массив строк
+        - regex - для спец символов необходимо \\ - "\\*"
+            - <(>,   <)>, <[>, <{>, <.>, <?>, <*>, <+>,  <|>, <^>, <\>.
+- из массива в строку
+    - String.join(String delimiter, String... strs)
+    ```
+        String[] arrayOfPets = new String[]{
+                "Кот Батончик",
+                "Хомяк Рафаэлка",
+                "Попугай Картошка"
+        };
+
+        String str = String.join(", ", arrayOfPets);
+    ```
+    - этим же методом можно создать строку из нескольких строк
+        ```
+          String cat = "Кот Батончик";
+          String pet = "Хомяк Рафаэлка";
+          String ara = "Попугай Картошка";
+
+          String str = String.join(", ", cat, pet, ara);  
+        ```
+
+- substring - непрерывный набор символов внутри строки
+- Замена строк (похоже как в JS)
+    - replace(String target, String replacement), replaceFirst(String target, String replacement)
+        - replaceFirst заменит только первое вхождение
+
+### StringBuilder
+
+- позволяет менять содержание строки без создания новой
+- методы
+    - append(String str), append(String str)- вставка в конец
+    - toString() - привести к обычной строке
+    - методы String - indexOf(), lastIndex(), substring(),replace() - такие же
+    - insert(int index, String str) - вставка по индексу
+    - deleteCharAt(int index), delete(int startIndexInclusive, int endIndexExclusive)
+        - удаление одного или нескольких элементов
+    - reverse() - развернуть
+    - setLength(int newLength) - обрезка с начала
+
+### Форматирование строк
+
+- похоже как Python Шаблоны
+- оформленное отображение строк
+- String.format(String format, Object... args) - format - образец, столько же аргументов сколько в образце
+
+```
+  String[] colors = new String[]{"красный", "жёлтый", "зелёный"};
+  String trafficLight = String.format("Цвета светофора: %s, %s и %s.", colors[0], colors[1], colors[2]);
+  System.out.println(trafficLight);
+
+  // либо сразу вывести через printf
+  System.out.printf("Цвета светофора: %s, %s и %s.", colors[0], colors[1], colors[2]);
+```
+
+- символы преобразования
+    - %s — для строк (s — сокращение от string);
+        - %S, %b и т.д. — для строк поднять регистр;
+    - %d — для целых чисел (d от decimal);
+    - %f — для чисел с плавающей точкой (f от float);
+    - %b — для булевых значений (b от boolean);
+    - %c — для символов (c от char и сharacter).
+    - можно привести к типу - System.out.printf("%b", "Hello, Java!"); // получим true
+    - \n - перенос строки
+- параметры для преобразования
+    - %55s - добавит 55 символов перед переменной
+    - %-55s - добавит 55 символов после переменной
+    - %1.12s - до точки перед, после точки после
+
+### Иерархия исключений

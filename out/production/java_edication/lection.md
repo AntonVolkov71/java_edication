@@ -1141,3 +1141,60 @@ class InputException extends Exception {
     - public void methodWithException() throws FirstException {}
         - этот метод может сгенерировать исключение FirstException
     - можно несколько throws NumberShouldBePositiveException, IncorrectInputStringException
+
+#### Final - обработка исключений
+
+- если catch не будет, то исключение будет выброшено после final
+- return  !!лучше НЕ использовать
+
+```
+try {
+    // действие, которое может вызвать ошибку
+} catch (Exception exception) {
+    // действие по обработке исключений
+} finally {
+    // действие, которое должно вызваться всегда
+}
+```
+
+### Работа с файлами
+
+- java.io.File, доступный с 1-й версии Java (1996);
+- более новый API java.nio.file.Path, доступный с 7-й версии Java (2011)
+- методы File
+    - getName() - имя директории, файла
+    - isDirectory(), isFile() - boolean файл или директория
+    - list() - возвращает String массив названий файлов и директорий, если нет Null
+    - listList() - возвращает File массив, если нет Null
+    - mkdir() - создание директории, возвращает boolean
+    - renameTo(File dest) - переименовывает файл или директорию, возвращает boolean
+    - delete() - удаляет файл или !!пустую директорию, который передан в конструктор, возвращает boolean
+- недостатки File
+    - нельзя скопировать и переместить файл
+    - в основном возвращает boolean, исключения лучше обрабатывать
+- с 7 версии добавили новые классы
+    - Paths - два метода для получения объекта Path
+    - Path - доработанная версия File. Интерфейс
+    - Files - много статических методов
+- Paths
+    - из переданной строки или URI получить объект типа Path
+    - get(String first, String... more) - преобразует строку пути или последовательность строк в Path
+    - Path testFilePath = Paths.get(HOME, "test", "file.txt");
+- Path
+    - getFileName() - имя файла из пути
+    - getParent(), getRoot() - возвращает родительскую, корневую File
+- Files
+    - createFile(Path path,FileAttribute<?>... attrs) - создает пустой файл, исключение если существует
+        - attrs - необязательный список - доступ, инфо о создателе
+    - createDirectory(Path dir, FileAttribute<?>... attrs) - создает директорию
+    - move(Path source, Path target, CopyOption. . . options) - перемещает файл,
+        - source - откуда
+        - target - куда
+    - copy(Path source, Path target, CopyOption... options)
+        - options
+            - REPLACE_EXISTING - если есть заменить
+            - COPY_ATTRIBUTES - скопировать аттрибуты оригинального
+            - ATOMIC_MOVE - атомарно, перемещение целиком или не выполнится
+    - void delete(Path path) - удаляет, исключение если не пустая или не существует!!
+    - boolean deleteIfExists(Path path) - удаление если существует
+    - 

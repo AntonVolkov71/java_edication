@@ -7,7 +7,6 @@
     <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/HAshMapTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/algorithm/HAshMapTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +57,7 @@
     "Application.CompareTest.executor": "Run",
     "Application.DepositCalculator.executor": "Run",
     "Application.FileReadWrite.executor": "Run",
+    "Application.FilesTest.executor": "Run",
     "Application.HAshMapTest.executor": "Run",
     "Application.Hello.executor": "Run",
     "Application.InsertionSort.executor": "Debug",
@@ -103,7 +103,7 @@
       <recent name="E:\1. Документы\Edication\2. Java\java_edication\bin\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HAshMapTest">
+  <component name="RunManager" selected="Application.FilesTest">
     <configuration name="CollectionsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.algorithm.CollectionsTest" />
       <module name="java_edication" />
@@ -123,6 +123,19 @@
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="src.algorithm.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FilesTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.files.FilesTest" />
+      <module name="java_edication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.files.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -156,33 +169,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="RadixSort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.algorithm.RadixSort" />
-      <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.algorithm.CollectionsTest" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Application.FilesTest" />
       <item itemvalue="Application.CollectionsTest" />
       <item itemvalue="Application.CompareTest" />
       <item itemvalue="Application.HAshMapTest" />
       <item itemvalue="Application.ListTest" />
-      <item itemvalue="Application.RadixSort" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FilesTest" />
         <item itemvalue="Application.HAshMapTest" />
         <item itemvalue="Application.CompareTest" />
         <item itemvalue="Application.ListTest" />
         <item itemvalue="Application.CollectionsTest" />
-        <item itemvalue="Application.RadixSort" />
       </list>
     </recent_temporary>
   </component>
@@ -205,7 +205,8 @@
       <workItem from="1728380297475" duration="9325000" />
       <workItem from="1728479726101" duration="19549000" />
       <workItem from="1728895915781" duration="2276000" />
-      <workItem from="1728898354124" duration="10310000" />
+      <workItem from="1728898354124" duration="14513000" />
+      <workItem from="1728981690063" duration="870000" />
     </task>
     <servers />
   </component>

@@ -1216,3 +1216,131 @@ private static final String HOME = "E:\\1. Документы\\Edication\\2. Jav
 ```
 
 ### Потоки вводы-вывода
+
+- тип передаваемых данных
+    - символьные потоки - содержат символы
+        - текстовые файлы
+    - байтовые - информация в виде последовательных байтов
+        - видео, pdf, изображения
+- классы
+    - InputStream - вывод для чтения байтов
+    - OutputStream - вывод для записи байтов
+    - Reader - ввод для чтения символов
+    - Writer - вывод для записи символов
+    - PrintStream - стандартный выходной поток
+- абстрактные классы
+    - FileInputStream, FileOutputStream, FileReader, FileWriter
+- общая схема работы
+    - создается потоковый объект и ассоциируется с файлом
+    - данные читаются из потока или записываются
+    - поток закрывается
+
+```
+Writer fileWriter = new FileWriter(HOME + "\\" + "test.txt", true);
+
+fileWriter.write("new record\n");
+fileWriter.write("add text");
+
+fileWriter.close();
+
+Reader fileReader = new FileReader(HOME + "\\" + "test.txt");
+
+int data = fileReader.read();
+
+while (data != -1) {
+    System.out.println((char) data);
+    data = fileReader.read();
+}
+
+fileReader.close();
+```
+
+- Буферизация — способ ввода и вывода данных, при котором для их временного хранения используется область памяти —
+  буфер.
+    - BufferedReader(Reader in)
+    - BufferedReader(Reader in, int sz) - размер буфера
+
+```
+FileReader fileReader = new FileReader(HOME + "\\" + "test.txt");
+BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+while (bufferedReader.ready()) {
+    String line = bufferedReader.readLine();
+    System.out.println(line);
+}
+
+bufferedReader.close();
+```
+
+#### try-with-resources
+
+- close() - используется, чтобы сообщить, что файл больше не нужен
+    - но его можно забыть, например, если будет исключение
+    - раньше использовалось в finally
+- try-with-resources - позволяет закрыть один или несколько ресурсов
+    - ресурс, наследуемый от Closeable, AutoCloseable
+
+```
+try (Resource1 resource1 = new Resource1(); Resource2 resource2 = new Resource2()) {
+            System.out.println("внутри блока try");
+        }
+        
+class Resource1 implements AutoCloseable {
+
+    @Override
+    public void close() {
+        System.out.println("метод close() для Resource1");
+    }
+}
+
+class Resource2 implements AutoCloseable {
+
+    @Override
+    public void close() {
+        System.out.println("метод close() для Resource2");
+    }
+}
+```
+
+### Кодировки
+
+- ASCII ISO 8859 - American Standard Code the Information Interchange
+    - американский стандартный код для обмена информацией
+- 128 символов
+    - первые 32 - невидимые управляемые символы
+    - последний DEL - тоже управляющий
+    - 32 до 126 - видимые, пробел, знаки препинания, латиница и цифры
+- определить символ по его числовому значению
+    - System.out.println((char) 89);
+- ISO 8859-1 до 8859-15 для разных языков
+- Windows 1251, 1252 совместимая с ASCII - с русским языком
+- Unicode - юникод - сегодня стандарт, включает иероглифы, арабские вязи, эмодзи
+    - разбит на 17 плоскостей по 65 536 значений
+    - UTF-8 самый распространенный
+    - System.out.println("\u041F\u0440\u0430\u043A\u0442\u0438\u043A\u0443\u043C"); // Практикум
+- Java
+    - Charset
+        - forName(String charsetName) - возвращает объект кодировки по имени
+    - StandardCharsets - класс с константами для стандартных наборов символов
+    - Кодировка определяется во время запуска
+        - System.out.println(Charset.defaultCharset().displayName()); // UTF-8
+    - Кодировка по умолчанию — глобальный параметр.
+    - Нельзя установить для одних классов или функций одну кодировку, а для других — другую. Кроме того, её нельзя
+      изменить в процессе выполнения программы.
+    - Но главное, разработчик может использовать функцию, которая будет работать по-разному в разном окружении, и не
+      заметить этого.
+    - Проблему кодировки по умолчанию решает запуск Java с параметром
+        - java -Dfile.encoding=UTF-8 Practicum
+    - рекомендуем использовать сигнатуры с указанием кодировки, такие как byte[] getBytes(Charset charset) и String(
+      byte[] bytes, String charsetName).
+      ```
+       // преобразование из строки в массив байтов
+       String s = "Обычная строка.";
+       byte[] buffer = s.getBytes(StandardCharsets.UTF_8);
+
+       // преобразование из массива байтов в строку
+       byte[] buffer = new byte[1000];
+       String s = new String(buffer, StandardCharsets.UTF_8);
+      ```
+
+### Стримы и операции с ними

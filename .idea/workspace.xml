@@ -7,7 +7,6 @@
     <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/FilesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/FilesTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,53 +47,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.B3GParser.executor": "Run",
-    "Application.B3GToJpegConverter.executor": "Run",
-    "Application.BinarySearch.executor": "Run",
-    "Application.Collections.executor": "Run",
-    "Application.CollectionsTest.executor": "Run",
-    "Application.CompareTest.executor": "Run",
-    "Application.DepositCalculator.executor": "Run",
-    "Application.FileReadWrite.executor": "Run",
-    "Application.FilesTest.executor": "Run",
-    "Application.HAshMapTest.executor": "Run",
-    "Application.Hello.executor": "Run",
-    "Application.InsertionSort.executor": "Debug",
-    "Application.ListTest.executor": "Run",
-    "Application.Main (1).executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Main_1.executor": "Run",
-    "Application.MetaInfoForm.executor": "Run",
-    "Application.PlayUgadaika.executor": "Run",
-    "Application.RadixSort.executor": "Run",
-    "Application.ReadBinaryFile.executor": "Run",
-    "Application.Test1.executor": "Run",
-    "Application.Test2.executor": "Run",
-    "Application.src.Main.executor": "Run",
-    "Application.test_app.src.screenshot.Main.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "corretto-11",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/JONSBO/Documents/My Files/Разработка/2. Edication/2. java",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "actions.on.save",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.B3GParser.executor&quot;: &quot;Run&quot;,
+    &quot;Application.B3GToJpegConverter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.BinarySearch.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Collections.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CollectionsTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CompareTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DepositCalculator.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FileReadWrite.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FilesTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HAshMapTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Hello.executor&quot;: &quot;Run&quot;,
+    &quot;Application.InsertionSort.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.ListTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main_1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MetaInfoForm.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PlayUgadaika.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RadixSort.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ReadBinaryFile.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.src.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.test_app.src.screenshot.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-11&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/JONSBO/Documents/My Files/Разработка/2. Edication/2. java&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\1. Документы\Edication\2. Java\java_edication\src\b3g" />
@@ -209,7 +208,8 @@
       <workItem from="1728898354124" duration="14513000" />
       <workItem from="1728981690063" duration="6978000" />
       <workItem from="1729065373881" duration="4317000" />
-      <workItem from="1729153539892" duration="6265000" />
+      <workItem from="1729153539892" duration="6878000" />
+      <workItem from="1729168009538" duration="7000" />
     </task>
     <servers />
   </component>

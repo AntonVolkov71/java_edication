@@ -1343,4 +1343,214 @@ class Resource2 implements AutoCloseable {
        String s = new String(buffer, StandardCharsets.UTF_8);
       ```
 
-### Стримы и операции с ними
+### Стримы и операции с ними Stream
+
+- более удобный способ чем циклы для операций как трансформаций и фильтраций
+- на основе входного списка объектов создается стрим - специальная последовательность данных и операций, которые будут
+  выполняться
+- дает декларативно описать, что нужно сделать с каждым элементом
+- операции
+    - промежуточные
+        - задают правила изменения стрима и возвращают трансформированный поток исходных данных
+    - терминальные
+        - конечные операции, завершает работу над стримом
+        - вызывается один раз
+    - ленивые вычисления (lazy evaluation)
+        - если нет терминальной операции, то и промежуточные не выполняются
+- метод collect()
+    - терминальная операция
+    - преобразовывает в какой-то тип данных
+
+```
+public List<String> processFilePaths(List<String> paths) {
+        List<String> result = paths
+                .stream()
+                .filter(filePath -> !filePath.endsWith(".tmp"))
+                .map(filePath -> Paths.get(filePath).getFileName().toString())
+                .map(fileName -> {
+                    if (fileName.startsWith("hide")) {
+                        return fileName.replace("hide", "very_secret_file");
+                    } else {
+                        return fileName;
+                    }
+                })
+                .collect(Collectors.toList());
+
+        return result;
+    }
+```
+
+### Лямбда-функции
+
+- функции, у которых нет имени и которые не принадлежат
+- вместо класса Компаратора для сортировки
+- синтаксис (список входных параметров) -> { блок реализации функции};
+    - по аналогии с JS, можно без фигурных, либо без входных параметров
+    - можно не указывать тип параметра, Java може твывести его сама
+
+```
+// объявляем класс, реализующий интерфейс Comparator
+class CircleComparator implements Comparator<Circle> {
+    @Override
+    public int compare(Circle o1, Circle o2) {
+        return o1.getRadius() - o2.getRadius();
+    }
+}
+circles.sort(new CircleComparator());
+
+circles.sort((Circle circle1, Circle circle2) -> {
+            return circle1.getRadius() - circle2.getRadius();
+        });
+```
+
+### Механизм замыканий
+
+- изменение значения переменной, используемой в лямбда-функции, может вызвать трудноотлавливаемые логические ошибки
+- переданная переменная, и используемая в другом классе, должна быть final
+- можно передать ссылочный объект, и менять его поля (НО Осторожно)
+
+```
+// fullName будет автоматически final
+GreetingGenerator gg = login -> "Приветствуем вас, "
+                + fullName
+                + " (" + login + ")"
+                + "!\n"; 
+                
+ Map<String, String> fullNames = new HashMap<>();
+        fullNames.put("mr_Dark", "Николай");
+        fullNames.put("craziest", "Вячеслав Юрьевич");
+
+        //лямбда сохранена в переменную gg и будет использована позже
+        GreetingGenerator gg = login -> "Приветствуем вас, "
+                + fullNames.get(login)
+                + " (" + login + ")"
+                + "!\n";
+
+
+        EmailCreator emailCreator = new EmailCreator(gg);
+        System.out.println(emailCreator.createEmail("mr_Dark", "Рады видеть вас в нашем приложении"));
+
+        fullNames.put("mr_Dark", "Николай Сергеевич");
+        System.out.println(emailCreator.createEmail("mr_Dark", "Рады видеть вас в нашем приложении"));
+```
+
+### Основы функционального программирования
+
+- описывает программу как набор преобразований, аналогичных математическим формулам
+- определение функции следуют два важных свойства:
+    - Результат работы функции должен зависеть только от её входных аргументов.
+    - Функция не должна иметь побочных эффектов.
+- функция стремится возвращать одинаковые значения при одинаковых входных аргументах.
+    - Это свойство функции называется детерминированностью
+- Функции, которые соответствуют обоим критериям — детерминированности и отсутствию побочных эффектов, — называют
+  чистыми функциями
+- Функции, которые работают с другими функциями — принимают их в качестве аргумента либо возвращают в качестве
+  результата,
+    - называются функциями высшего порядка
+
+```
+public static void main(String[] args) {
+        //Попробуйте выбрать другое значение операции из набора "+", "-", "*", "/"
+        String operation = "/";
+        //получаем лямбда-функцию, реализующую требуемую операцию
+        BiFunction<Integer, Integer, Integer> arithmeticOperation = getOperation(operation);
+        //Попробуйте изменить аргументы
+        int arg1 = 7;
+        int arg2 = 3;
+
+        //вызываем полученную лямбда-функцию с заданными аргументами
+        int result = arithmeticOperation.apply(arg1, arg2);
+        System.out.println(result);
+    }
+
+    //функция, которая в зависимости от аргумента возвращает лямбда-функцию, вычисляющую соответствующую операцию
+    private static BiFunction<Integer, Integer, Integer> getOperation(String sign) {
+        switch (sign) {
+            case "+":
+                return (value1, value2) -> value1 + value2;
+            case "-":
+                return (value1, value2) -> value1 - value2;
+            case "*":
+                return (value1, value2) -> value1 * value2;
+            case "/":
+                return (value1, value2) -> value1 / value2;
+            default:
+                throw new IllegalArgumentException("Неизвестная операция");
+        }
+
+    }
+```
+
+- предпочтение рекурсии вместо циклов, циклы изменяют переменную счетчика
+- интерфейсы, где ровно !!Один абстрактный метод, называются функциональными интерфейсами.
+    - А сам метод при этом называют функциональным методом.
+    - Аннотация @FunctionalInterface не обязательна
+
+```
+@FunctionalInterface
+interface GreetingGenerator {
+    String generateGreeting(String login);
+}
+
+GreetingGenerator gg = login -> "Приветствуем вас, "
+                + fullName
+                + " (" + login + ")"
+                + "!\n";
+```
+
+```
+@FunctionalInterface
+interface Summator {
+    int sum(int n1, int n2);
+}
+
+public class FilesTest {
+    public static void main(String[] args) {
+        // сохраните лямбду в переменную
+        // лямбда должна складывать два целых числа
+        Summator summator = (n1, n2) -> n1 + n2;
+        // допишите код, использующий лямбду
+        System.out.println("Сумма 23 и 65 равна " + summator.sum(23, 65));
+    }
+}
+```
+
+- функциональные интерфейсы стандартной библиотеки (java.util.function)
+    - Function<T, R>
+        - единственный метод описывается как R apply(T t)
+          ```
+              Function<Integer, String> intToString = num -> String.valueOf(num);
+    
+              System.out.println(intToString.apply(1000_0000));
+          ```
+    - Predicate<T> с методом boolean test(T t);
+      ```
+        Predicate<Integer> isEven = num -> num % 2 == 0;
+
+        if (isEven.test(12345)) {
+            System.out.println("Число чётное");
+        } else {
+            System.out.println("Число нечётное");
+        }
+      ```
+    - Consumer<T> с методом void accept(T t);
+        - интерфейс подойдёт для тех случаев, когда нужно выполнить какие-то действия ради их побочных эффектов
+      ```
+        Consumer<Double> outputDoubleConsumer =
+        num -> System.out.println(String.format("Передано число %.2f", num));
+
+        outputDoubleConsumer.accept(1234.5678);
+      ```
+    - Supplier<T> с методом T get().
+        - не принимает аргументов и возвращает значение типа T
+      ```
+          Supplier<LocalDateTime> currentDateTimeSupplier = () -> LocalDateTime.now();
+
+          System.out.println("Текущая дата и время: " + currentDateTimeSupplier.get());
+      ```
+- > В профессиональной литературе названия функциональных интерфейсов используются в сленговом виде — Функция, Предикат,
+  Потребитель
+
+### Анонимные классы
+
+- это класс, который, как и лямбда-выражение, не имеет имени и описывается в момент его использования

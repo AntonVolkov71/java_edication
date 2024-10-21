@@ -1,8 +1,6 @@
-package src.files;
+package src;
 
-
-public class FilesTest {
+public class OptionalNameDemo {
     public static void main(String[] args) {
-
     }
 }

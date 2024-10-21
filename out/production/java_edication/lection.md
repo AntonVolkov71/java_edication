@@ -1548,3 +1548,684 @@ public class FilesTest {
 
           System.out.println("Текущая дата и время: " + currentDateTimeSupplier.get());
       ```
+- > В профессиональной литературе названия функциональных интерфейсов используются в сленговом виде — Функция, Предикат,
+  Потребитель
+
+### Анонимные классы
+
+- это класс, который, как и лямбда-выражение, не имеет имени и описывается в момент его использования
+
+```
+import java.util.HashSet;
+import java.util.Set;
+
+public class GreetingEmailManager {
+
+    public static void main(String[] args) {
+        String fullName = "Николай";
+
+        //создаём анонимный класс, реализующий интерфейс GreetingGenerator
+        GreetingGenerator gg = new GreetingGenerator() {
+            //поле с набором всех логинов, с которыми вызывался метод generateGreeting
+            Set<String> processedLogins = new HashSet<>();
+
+            @Override
+            public String generateGreeting(String login) {
+                //вступительная часть приветствия зависит от того,
+                //первый раз или нет обрабатывается данный логин
+                String introString;
+                if (processedLogins.contains(login)) {
+                    introString = "Снова приветствуем вас, ";
+                } else {
+                    introString = "Приветствуем вас, ";
+                }
+                //добавляем текущий логин к обработанным
+                processedLogins.add(login);
+
+                return introString
+                        + fullName
+                        + " (" + login + ")"
+                        + "!\n";
+            }
+        };
+
+        EmailCreator emailCreator = new EmailCreator(gg);
+        System.out.println(emailCreator.createEmail("mr_Dark", "Рады видеть вас в нашем приложении"));
+        //второе письмо к пользователю mr_Dark будет содержать новое приветствие
+        System.out.println(emailCreator.createEmail("mr_Dark", "Рады видеть вас в нашем приложении"));
+
+    }
+}
+
+@FunctionalInterface
+interface GreetingGenerator {
+    String generateGreeting(String login);
+}
+
+class EmailCreator {
+    //объект GreetingGenerator используется для генерации приветствия в письме
+    private GreetingGenerator greetingCreator;
+
+    public EmailCreator(GreetingGenerator greetingCreator) {
+        this.greetingCreator = greetingCreator;
+    }
+
+    public String createEmail(String login, String text) {
+        return greetingCreator.generateGreeting(login) + text;
+    }
+}
+```
+
+#### Ссылка на метод
+
+- лямбда выражение передаваемой функции
+    - как в JS [].map(Boolean)
+    - .peek(System.out::println) -> (String name) -> System.out.println(name)
+        - String::toUpperCase
+
+```
+class Candy {
+    final String name;
+    final String producer;
+    final int price;
+    final int amountSold;
+    final Set<String> alternateNames;
+
+    public Candy(String name, String producer, int price, int amountSold, Collection<String> alternateNames) {
+        this.name = name;
+        this.producer = producer;
+        this.price = price;
+        this.amountSold = amountSold;
+        this.alternateNames = Set.copyOf(alternateNames);
+    }
+
+    public static int compareByName(Candy c1, Candy c2) {
+        return c1.name.compareTo(c2.name);
+    }
+
+    public static int compareByPrice(Candy c1, Candy c2) {
+        return c1.price - c2.price;
+    }
+
+    public void printNameWithPrice() {
+        System.out.println(name + ": " + price);
+    }
+
+    @Override
+    public String toString() {
+        return "Candy{" +
+                "name='" + name + '\'' +
+                ", producer='" + producer + '\'' +
+                ", price=" + price +
+                ", amountSold=" + amountSold +
+                ", alternateNames=" + alternateNames +
+                '}';
+    }
+}
+
+public class FilesTest {
+    public static void main(String[] args) {
+        Candy candy1 = new Candy("Мишка на севере", "Первая кондитерская фабрика", 28, 4, Set.of("Мишка косолапый", "Мишка"));
+        Candy candy2 = new Candy("Мишка в лесу", "Триумф", 32, 2, Set.of("Мишка косолапый"));
+        Candy candy3 = new Candy("Трюфель", "Триумф", 44, 5, Set.of("Трюфель классический", "Трюфель шоколадный"));
+        Candy candy4 = new Candy("Победа", "Первая кондитерская фабрика", 14, 12, Set.of("ПОБЕДА"));
+
+        Candy[] candies = {candy1, candy2, candy3, candy4};
+
+        System.out.println("Сортировка по имени");
+        Arrays.sort(candies, Candy::compareByName);
+        Arrays.stream(candies).forEach(Candy::printNameWithPrice);
+
+        System.out.println("Сортировка по цене");
+        Arrays.sort(candies, Candy::compareByPrice);
+        Arrays.stream(candies).forEach(Candy::printNameWithPrice);
+    }
+}
+```
+
+#### Если метод не может вернуть значение
+
+- тип Optional. Optional<T> — это специальный класс-обёртка, объект которого может содержать значение класса T либо не
+  содержать ничего
+- статические методы Optional
+    - Optional.of - принимает в качестве аргумента значение любого типа (но не NUll)
+        - Optional<Integer> optionalNumber = Optional.of(123);
+    - Optional.ofNullable - в качестве аргумента значение любого типа, при этом оно может быть равно null
+        - когда заранее неизвестно, равно ли оборачиваемое значение null или нет
+          ``` 
+            String someString = ...; // значение может прийти из другого метода и равняться null
+            Optional<String> optionalString = Optional.ofNullable(someString);
+          ```
+    - Optional.empty - не принимает аргументов и создаёт объект класса Optional
+        - когда нужно вернуть Optional без значения
+        ```
+         public Optional<Integer> findFirstGreaterThan(int n, Collection<Integer> numbers) {
+         for (Integer num : numbers) {
+            if(num > n) return Optional.of(num); // число больше n найдено
+         }
+          return Optional.empty(); // в переданных числах, нет числа больше чем n
+          }
+        ```
+- для обработки методы
+    - isPresent и isEmpty;
+    - ```
+         Optional<Double> optionalPrice = Optional.of(123.4);
+         System.out.println(optionalPrice.isPresent()); // вернёт true
+         System.out.println(optionalPrice.isEmpty()); // вернёт false
+      ```
+    - get - Используется для получения результата, содержащегося в Optional
+        - если объект Optional не содержит значения, то вызов этого метода приведёт к генерации исключения
+          NoSuchElementException
+      ```
+         Optional<Integer> optNumber = findFirstGreaterThan(5, Set.of(1, 2, 3, 4));
+        if (optNumber.isPresent()) { // проверяем, что объект класса Optional содержит значение
+            // вызываем метод get, чтобы получить значение, содержащееся в Optional
+            System.out.println("Найденное число равно: " + optNumber.get());
+        }
+      ```
+    - orElseThrow, orElse и orElseGet; - получить содержащееся в Optional значение, либо задать поведение в случае, если
+      объект класса Optional пуст.
+    - orElseThrow
+        - в качестве аргумента принимает лямбду, возвращающую исключение, которое нужно выбросить, если Optional пуст.
+        - Этот метод используется, если для логики программы отсутствие значения критично и работа не может быть
+          продолжена
+    - orElse
+        - задать значение по умолчанию. В качестве аргумента он принимает значение того же типа, что и значение внутри
+          Optional.
+        - Именно оно будет возвращено, если Optional окажется пустым
+    - orElseGet
+        - в качестве аргумента принимает лямбду типа Supplier.
+        - Этот метод нужно использовать, когда вычисление значения по умолчанию является дорогой операцией и его
+          выполнение нужно отложить.
+        - До того момента, пока не будет точно известно, что Optional пуст.
+    - ifPresent
+        - Позволяет выполнить действие со значением внутри Optional.
+        - Этот метод полезен, если значение внутри Optional нам нужно разово, при этом для логики программы не
+          принципиально, если значение отсутствует вовсе.
+        - В качестве аргумента данный метод принимает лямбду типа Consumer
+    - ifPresentOrElse
+        - Позволяет указать, какие нужно выполнить действия в ситуации, когда внутри Optional есть значение, и в
+          ситуации, когда нет.
+        - В качестве аргументов принимает две лямбды типа Consumer и Runnable.
+        - ```
+          // Вызываем метод, возвращающий Optional<Integer>, и передаём две лямбды
+          // Первая выполнится в случае, если Optional не пуст,
+          //  вторая — если пуст
+          findFirstGreaterThan(5, Set.of(1, 2, 3, 4))
+             .ifPresentOrElse(
+                number -> System.out.println("Найденное число равно " + number),
+                () -> System.out.println("Число не найдено")
+             );
+          ```
+- Optional в Java предназначен только для использования в качестве возвращаемого значения метода в тех случаях,
+    - когда отсутствие значения является валидным результатом его работы
+- Правильное использование Optional
+    - в качестве возвращаемого значения метода в тех случаях, когда отсутствие значения является валидным результатом
+- Неправильное использование Optional
+    - в качестве типа данных у параметров метода
+    - в качестве типа данных у поля класса
+    - оборачивать коллекции в Optional - если значение отсутствует, достаточно пустой коллекции
+    - в качестве элементов коллекции
+    - распаковывать Optional при помощи метода get без проверки
+
+### Стримы и Optional
+
+```
+package src;
+
+import java.util.*;
+
+class Candy {
+    final String name;
+    final String producer;
+    final int price;
+    final int amountSold;
+    final Set<String> alternateNames;
+
+    public Candy(String name, String producer, int price, int amountSold, Collection<String> alternateNames) {
+        this.name = name;
+        this.producer = producer;
+        this.price = price;
+        this.amountSold = amountSold;
+        this.alternateNames = Set.copyOf(alternateNames);
+    }
+
+}
+
+public class OptionalNameDemo {
+    public static void main(String[] args) {
+        Candy candy1 = new Candy("Мишка на севере", "Первая кондитерская фабрика", 28, 4, Set.of("Мишка косолапый", "Мишка"));
+        Candy candy2 = new Candy("Мишка в лесу", "Триумф", 32, 2, Set.of("Мишка косолапый"));
+
+        List<Candy> candies = new ArrayList<>();
+        candies.add(candy1);
+        candies.add(candy2);
+
+        //добавляем конфету фабрики Главная шоколадная фабрика
+        //раскомментируйте строчку, чтобы Optional стал не пустым
+        //candies.add(new Candy("Шоколадный полет", "Главная шоколадная фабрика", 84, 0, Set.of("ШОКОЛАДНЫЙ ПОЛЕТ")));
+
+        Optional<Candy> maybeChokoCandy = candies.stream()
+                //выбираем только конфеты Главной шоколадной фабрики
+                .filter(candy -> candy.producer.equals("Главная шоколадная фабрика"))
+                //получаем первую из них
+                .findFirst();
+
+        maybeChokoCandy.ifPresentOrElse(
+                //если Optional не пуст
+                candy -> System.out.println(candy.name),
+                //если Optional пуст
+                () -> System.out.println("Такой конфеты не существует ifPresentOrElse")
+        );
+
+        //если такая конфета существует, выводим ее название
+        if (maybeChokoCandy.isPresent()) {
+            Candy chokoCandy = maybeChokoCandy.get();
+            System.out.println(chokoCandy.name);
+        } else {
+            System.out.println("Такой конфеты не существует");
+        }
+    }
+}
+
+```
+
+### Unix - время, Класс Instant
+
+- Unix Epoch - Точку начала, 0 часов 0 минут 0 секунд 1 января 1970 года
+- Unix time - саму систему представления времени
+- UTC (англ. Coordinated Universal Time, «всемирное координированное время»)
+    - добавляют или убавляют дополнительное время — это называется смещением относительно UTC
+- > Unix-время соответствует времени UTC без какого-либо смещения — его ещё иногда обозначают как UTC0.
+- timestamp (англ. «метка времени») - Количество времени в миллисекундах от Unix-эпохи
+
+### Класс Instant
+
+- представляет метки времени
+- Он хранит не только количество миллисекунд от эпохи Unix, но и количество наносекунд
+- методы
+    - now() - получить текущую метку времени
+        - toString() - то дата и время будут выведены в формате ISO-8601: год-месяц-деньTчасы:минуты:секундыZ
+        - Instant instant = Instant.now(); System.out.println(instant);
+    - toEpochMilli() - Посчитать количество миллисекунд с Unix-эпохи до конкретной метки времени
+        - ofEpochSecond(long epochSecond), ofEpochMilli(long epochMilli) и ofEpochSecond(long epochSecond, long
+          nanoAdjustment)
+        - если известно секунды, миллисекунды, наносекунды
+- получить время до Unix-эпохи - передать отрицательное число
+- Верхняя граница содержится в константе Instant.MAX, нижняя — в Instant.MIN
+- Экземпляры класса Instant — неизменяемые
+    - нельзя поменять время: например, перевести его на час вперёд
+    - можно воспользоваться специальными методами для создания нового экземпляра на основе старого, но с другим временем
+    - plusSeconds(long secondsToAdd) — создаёт экземпляр класса Instant, который будет отличаться от текущего на
+      secondsToAdd секунд в бóльшую сторону;
+    - plusMillis(long millisToAdd) — на millisToAdd миллисекунд в бóльшую сторону;
+    - plusNanos(long nanosToAdd) — на nanosToAdd наносекунд в бóльшую сторону.
+    - minusSeconds(long secondsToSubtract) — на secondsToSubtract секунд;
+    - minusMillis(long millisToSubtract) — на millisToSubtract миллисекунд;
+    - minusNanos(long nanosToSubtract) — на nanosToSubtract наносекунд.
+- сравнение моментов
+    - isAfter(Instant otherInstant) — возвращает true, если время в экземпляре Instant, у которого вызывается метод,
+      находится на временной шкале позже, чем otherInstant; и false — в противоположном случае;
+    - isBefore(Instant otherInstant) — возвращает true, если время в экземпляре Instant, у которого вызывается метод,
+      находится на временной шкале раньше, чем otherInstant; и false — в противоположном случае;
+    - equals(Object otherInstant) — возвращает true, если оба экземпляра указывают на один и тот же момент во времени.
+
+### Классы LocalDateTime, LocalDate и LocalTime
+
+- требуется работать со временем как с часами и календарём — узнавать и учитывать в программе текущее время и дату
+- LocalDateTime
+    - Сохранить текущую дату и время
+    - LocalDateTime localDateTime = LocalDateTime.now();
+    - Информацию о текущем времени программа берёт из устройства, на котором она запущена
+    - создать с заданными параметрами - год, месяц, день месяца, часы, минуты, секунды, наносекунды
+        - LocalDateTime localDateTime = LocalDateTime.of(1990, 6, 30, 12,12,0,0);
+        - LocalDateTime montsDate = LocalDateTime.of(2016, Month.JUNE, 16, 12, 12);
+        - System.out.println(montsDate);
+- import java.time.Month; - месяц из констант перечисления java.time.Month
+- методы для получения новых экземпляров
+    - Каждый вызов метода возвращает новый экземпляр класса:
+    - plusYears(long years)/minusYears(long years) — создаёт новый экземпляр даты и времени с прибавлением/вычитанием
+      указанного количества лет;
+    - plusMonths(long months)/minusMonths(long months) — новый экземпляр с прибавлением/вычитанием количества месяцев;
+    - plusWeeks(long weeks)/minusWeeks(long weeks) — количества недель;
+    - plusDays(long days)/minusDays(long days) — дней;
+    - plusHours(long hoursToAdd)/minusHours(long hoursToSubtract) — часов;
+    - plusMinutes(long minutesToAdd)/minusMinutes(long minutesToSubtract) — минут;
+    - plusSeconds(long secondstoAdd)/minusSeconds(long secondsToSubtract) — секунд;
+    - plusNanos(long nanosToAdd)/minusNanos(long nanosToSubtract) — наносекунд.
+    - LocalDateTime currentDateTime = LocalDateTime.now(); LocalDateTime twoWeeksAgo = currentDateTime.minusWeeks(2);
+        - можно цепочкой
+            - LocalDateTime newDateTime = currentDateTime.plusMonths(3).plusWeeks(2);
+- LocalDateTime можно сравнивать друг с другом
+    - isBefore(LocalDateTime otherMoment) — проверяет, находятся ли дата и время на временной шкале раньше, чем дата и
+      время, переданные в качестве параметра.
+        - Например, lastYear.isBefore(nextYear) вернёт true, если lastYear находится на временной шкале раньше, чем
+          nextYear.
+    - isAfter(LocalDateTime otherMoment) — проверяет, находятся ли дата и время на временной шкале позже, чем дата и
+      время, переданные в качестве параметра.
+        - Например, nextYear.isAfter(lastYear) вернёт true, если nextYear находится на временной шкале позже, чем
+          lastYear.
+    - equals(LocalDateTime otherMoment) — проверяет, равны ли две даты и их время.
+        - Например, LocalDateTime.now().equals(newYear) вернёт true, если текущие дата и время будут равны newYear.
+
+#### LocalDateTime и текст
+
+- Если конвертировать экземпляр LocalDateTime в текст, то получится не самая читаемая строка в формате ISO 8601:
+    - 2021-12-21T21:21:21.121212
+- для этого есть DateTimeFormatter
+    - В его экземплярах описывается нужный формат вывода с помощью метода ofPattern(String pattern)
+        - dd — день,
+        - MM — месяц,
+        - yyyy — год,
+        - HH — час,
+        - mm — минуты,
+        - ss — секунды,
+        - SSS — дробная часть секунд.
+      ```
+         LocalDateTime localDateTime = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy");
+        String formatDateTime = localDateTime.format(formatter);
+        System.out.println(formatDateTime); // 21.10.24
+      ```
+- обратно из строкового в LocalDateTime
+    - parse(..)
+    - даже такое 14_02_1966|14:09 - DateTimeFormatter.ofPattern("dd_MM_yyyy|HH:mm");
+    - либо String input = "14 часов 09 минут. Месяц: 02, День: 14, Год: 1966.";
+        - DateTimeFormatter.ofPattern("HH часов mm минут. Месяц: MM, День: dd, Год: yyyy.");
+
+```
+LocalDateTime dateTime = LocalDateTime.parse("2021-12-21T21:21:21");
+System.out.println(dateTime);
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy, HH:mm");
+
+LocalDateTime anotherDateTime = LocalDateTime.parse("22.02.2022, 22:22", formatter);
+System.out.println(anotherDateTime);
+
+System.out.println(dateTime.isAfter(anotherDateTime));    
+```
+
+- время может понадобиться без даты, и наоборот: в некоторых задачах нужна дата, но не время
+    - LocalDate - аналогично LocalDateTime, оперирует годом, месяцем и днём;
+    - LocalTime - аналогично LocalDateTime, часами, минутами, секундами и наносекундами
+
+```
+LocalTime someTime = LocalTime.of(12, 15, 35, 999);
+        LocalTime anotherTime = LocalTime.of(12, 15);
+
+        System.out.println(someTime); // 12:15:35.000000999
+        System.out.println(anotherTime); // 12:15
+
+// создаём экземпляр LocalDate, в котором будет храниться 32-й день в году
+        LocalDate someDate = LocalDate.ofYearDay(2000, 32);
+        // это 1 февраля 2000 года
+
+        System.out.println(someDate); // 2000-02-01
+```
+
+- LocalDate и LocalTime можно извлечь из LocalDateTime и обратно
+
+```
+LocalDateTime dateTime = LocalDateTime.now();
+
+// извлечём время
+LocalTime time = dateTime.toLocalTime();
+System.out.println(time);
+
+// извлечём дату
+LocalDate date = dateTime.toLocalDate();
+System.out.println(date);
+
+ // создадим по отдельности дату и время
+LocalTime time = LocalTime.now();
+LocalDate date = LocalDate.now();
+        
+// соберём их вместе — в экземпляр LocalDateTime
+LocalDateTime newDateTime = LocalDateTime.of(date, time);
+System.out.println(newDateTime);
+```
+
+- Из LocalDateTime, LocalDate и LocalTime можно извлечь нужные единицы времени с помощью методов:
+    - getYear() — возвращает год,
+    - getMonth() — константу месяца,
+    - getMonthValue() — номер месяца,
+    - getDayOfMonth() — день месяца,
+    - getHour() — часы,
+    - getMinute() — минуты,
+    - getSecond() — секунды,
+    - getNano() — наносекунды.
+    - getDayOfYear() — возвращает порядковый номер дня в году,
+    - getDayOfWeek() — возвращает день недели — константу java.time.DayOfWeek.
+
+### Классы Period и Duration
+
+- Period
+    - для вычисления срока между двумя датами
+    - методы
+        - getYears() - продолжительность в годах
+        - getMonths()() - продолжительность в месяцах
+        - getDays()() - продолжительность в днях
+    - простой способ узнать продолжительность
+        - статический метод between(LocalDate startDateInclusive, LocalDate endDateExclusive)
+            - День, обозначенный датой endDateExclusive, в расчёте не учитывается
+
+```
+LocalDate today = LocalDate.now();
+// напишите здесь свою дату рождения
+LocalDate birthday = LocalDate.of(1990, 1, 2);
+
+Period age = Period.between(birthday, today);
+System.out.println("Ваш возраст:");
+System.out.println("Лет: " + age.getYears());
+System.out.println("Месяцев: " + age.getMonths());
+System.out.println("Дней: " + age.getDays());
+```
+
+- Duration
+    - хранит продолжительность времени с точностью до наносекунд и используется для вычисления длительности времени
+      между двумя моментами
+    - between(...)
+
+```
+LocalDateTime now = LocalDateTime.now();
+        // напишите здесь свою дату рождения с точностью до часов и минут
+        int yearOfBirth = 1990;
+        Month monthOfBirth = JANUARY;
+        int dayOfMonth = 1;
+        int hourOfBirth = 9;
+        int minuteOfBirth = 0;
+        LocalDateTime birthday = LocalDateTime.of(yearOfBirth, monthOfBirth, dayOfMonth, hourOfBirth, minuteOfBirth);
+
+        Duration duration = Duration.between(birthday, now);
+
+        System.out.println("На момент запуска кода вы прожили " + duration.getSeconds()
+                + " секунд и " + duration.getNano() + " наносекунд.");
+```
+
+#### Создание объектов Duration и Period
+
+- Period.toString() - P(количество лет)Y(количество месяцев)M(количество дней)D
+- Перечислить все составляющие промежутка: года, месяцы и дни для Period:
+  // промежуток длиной 100 лет, 10 месяцев, 1 день
+  Period longTime = Period.of(100, 10, 1);
+- Воспользоваться методами по созданию промежутка из конкретной величины. Для Period:
+    - ofDays(int days) — создаёт экземпляр Period длительностью days дней,
+    - ofWeeks(int weeks) — длительностью weeks недель,
+    - ofMonths(int months) — длительностью months месяцев,
+    - ofYears(int years) — длительностью years лет.
+- Duration
+    - PT(количество часов)H(количество минут)M(количество секунд)S
+    - ofSeconds(long seconds) — создаёт экземпляр Duration длительностью seconds секунд,
+    - ofSeconds(long seconds, long nanoAdjustment) — длительностью seconds секунд и nanoAdjustment наносекунд,
+    - ofMinutes(long minutes) — длительностью minutes минут,
+    - ofHours(long hours) — длительностью hours часов,
+    - ofDays(long days) — длительностью days дней.
+    - getSeconds() и getNano() - продолжительность: количество секунд и дробная часть секунды — в наносекундах
+
+```
+Duration tenMinutes = Duration.ofMinutes(10);
+        System.out.println(tenMinutes);
+
+        Duration fiveDays = Duration.ofDays(5);
+        System.out.println(fiveDays);
+
+        Duration sixHours = Duration.ofHours(6);
+        System.out.println(sixHours);
+
+        Duration someTime = Duration.ofSeconds(59, 100);
+        System.out.println(someTime);
+        
+PT10M
+PT120H
+PT6H
+PT59.0000001S
+
+```
+
+```
+ Random random = new Random();
+
+        // фиксируем начало выполнения кода
+        LocalDateTime start = LocalDateTime.now();
+
+        // производим действия, время исполнения которых хотим замерить
+        int num = random.nextInt(5000);
+        Thread.sleep(num); // останавливаем выполнение кода на произвольное время
+
+        // фиксируем конец выполнения кода
+        LocalDateTime finish = LocalDateTime.now();
+
+        // находим продолжительность между двумя моментами
+        Duration duration = Duration.between(start, finish);
+
+        // выводим результат
+        System.out.println("Код выполнился за " + duration.getSeconds() + "." + duration.getNano() + "с.");
+```
+
+- Duration удобные методы
+    - toDays() — возвращает целое число дней в промежутке;
+    - toHours() — целое число часов;
+    - toMinutes() — целое число минут;
+    - toMillis() — целое число миллисекунд;
+    - toNanos() — целое число наносекунд;
+    - toHoursPart() — возвращает количество часов от неполного дня;
+    - toMinutesPart() — количество минут от неполного часа;
+    - toSecondsPart() — количество секунд от неполной минуты;
+    - toMillisPart() — количество миллисекунд от неполной секунды.
+
+```
+LocalTime secondTime = LocalTime.of(23, 40);
+        LocalTime firstTime = LocalTime.of(14, 25);
+
+        Duration duration = Duration.between(firstTime, secondTime);
+
+        System.out.println("Между двумя моментами времени:");
+        System.out.println(duration.toHours() + " часов, " + duration.toMinutesPart() + " минут,");
+        System.out.println("или " + duration.toMinutes() + " минут.");
+```
+
+### Часовые пояса: класс ZonedDateTime
+
+- LocalDateTime, но с добавлением ZoneId — временной зоны
+- Работать с ZoneId можно двумя способами: с фиксированным смещением относительно UTC и с привязкой к конкретному
+  региону на Земле
+- задать фиксированное смещение (UTC[+/-]hh:mm)
+    - ZoneId zoneUtc = ZoneId.of("UTC-03:45");
+
+```
+LocalDateTime dateTime = LocalDateTime.now();
+System.out.println(dateTime);
+
+ZoneId zoneId = ZoneId.of("UTC+3");
+System.out.println(zoneId);
+
+ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, zoneId);
+System.out.println(zonedDateTime);
+        
+2024-10-21T14:58:35.503927400
+UTC+03:00
+2024-10-21T14:58:35.503927400+03:00[UTC+03:00]
+```
+
+- Чтобы избежать проблем с историческим изменением часовых поясов в конкретном месте, в Java есть второй вариант
+  хранения времени.
+    - Он позволяет привязаться к конкретному региону
+    - ZoneId zoneId = ZoneId.of("Europe/Moscow");
+        - Europe/Moscow — Москва,
+        - Asia/Yekaterinburg — Екатеринбург, Пермь,
+        - Asia/Vladivostok — Владивосток,
+        - America/New_York — Нью-Йорк,
+        - America/Toronto — Торонто,
+        - Japan — Япония.
+
+```
+LocalDateTime dateTime = LocalDateTime.now();
+ZoneId zoneId = ZoneId.of("Europe/Moscow");
+ZonedDateTime zonedDateTime = ZonedDateTime.of(dateTime, zoneId);
+
+System.out.println(zonedDateTime);
+
+2024-10-21T15:00:31.974842200+03:00[Europe/Moscow]
+
+// сохраняем временную отметку запуска первого искусственного спутника
+Instant moment = Instant.ofEpochSecond(-386310686L);
+System.out.println("Timestamp: " + moment);
+
+// сохраняем её как московское время:
+ZoneId zone = ZoneId.of("Europe/Moscow");
+ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(moment, zone);
+
+System.out.println(zonedDateTime);
+
+Timestamp: 1957-10-04T19:28:34Z
+1957-10-04T22:28:34+03:00[Europe/Moscow]
+```
+
+- Методы в ZonedDateTime такие же, как и в LocalDateTime
+- Для создания экземпляра с изменением временной зоны есть два метода
+    - withZoneSameInstant(ZoneId zone) - метод, аналогичный переводу часов: момент времени, на который указывает
+      экземпляр,
+        - остаётся неизменным, меняется LocalDateTime и ZoneId
+    - withZoneSameLocal(ZoneId zone) - метод, аналогичный выбору другого часового пояса при настройке телефона:
+        - часы будут показывать то же самое время, но зона будет другой
+        - Например, электронная рассылка должна прийти пользователям по всему миру в одно и то же время, но по местному
+          часовому поясу
+            - сначала нужно рассчитать время и дату с часовым поясом, который установлен на сервере рассылки,
+            - а затем, меняя часовые пояса, можно будет определить, в какое именно время нужно отправлять письма
+              адресатам из разных регионов
+
+```
+Instant now = Instant.now();
+
+// сохраняем московское время:
+ZoneId moscowZone = ZoneId.of("Europe/Moscow");
+ZonedDateTime moscowDateTime = ZonedDateTime.ofInstant(now, moscowZone);
+
+// меняем регион на Нью-Йорк
+ZoneId newYorkZone = ZoneId.of("America/New_York");
+ZonedDateTime newYorkDateTime = moscowDateTime.withZoneSameLocal(newYorkZone);
+
+System.out.println(moscowDateTime);
+System.out.println(newYorkDateTime);
+
+2024-10-21T15:04:02.708658700+03:00[Europe/Moscow]
+2024-10-21T15:04:02.708658700-04:00[America/New_York]
+```
+
+- Форматирование для ZonedDateTime идентично LocalDateTime,
+    - VV — название временной зоны,
+    - ZZZZZ — смещение в формате +03:00.
+
+```
+Instant now = Instant.now();
+
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("Время: HH:mm:ss. Регион: VV, смещение: ZZZZZ");
+
+ZoneId zone = ZoneId.of("Asia/Dubai");
+ZonedDateTime dateTime = ZonedDateTime.ofInstant(now, zone);
+
+System.out.println(dateTime.format(formatter));
+
+Время: 16:05:10. Регион: Asia/Dubai, смещение: +04:00
+```

@@ -5,8 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/java_edication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/java_edication.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/FilesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/files/FilesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/java_edication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/java_edication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/lection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/src/files/test.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/src/files/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/src/screen/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/OptionalNameDemo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/BinarySearch.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/CollectionsTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/CompareTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/HAshMapTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/InsertionSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/ListTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/PlayUgadaika.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/RadixSort.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/Test1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/algorithm/Test2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/date/InstantTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/FilesTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/test.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/files/test.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/Document.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/NoteBook.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screen/RussianPassport.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,24 +88,38 @@
     &quot;Application.HAshMapTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.Hello.executor&quot;: &quot;Run&quot;,
     &quot;Application.InsertionSort.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.InstantTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.ListTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
     &quot;Application.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.Main_1.executor&quot;: &quot;Run&quot;,
     &quot;Application.MetaInfoForm.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OptionalNameDemo.executor&quot;: &quot;Run&quot;,
     &quot;Application.PlayUgadaika.executor&quot;: &quot;Run&quot;,
     &quot;Application.RadixSort.executor&quot;: &quot;Run&quot;,
     &quot;Application.ReadBinaryFile.executor&quot;: &quot;Run&quot;,
     &quot;Application.Test1.executor&quot;: &quot;Run&quot;,
     &quot;Application.Test2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UnitTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UnitTestTest.executor&quot;: &quot;Run&quot;,
     &quot;Application.src.Main.executor&quot;: &quot;Run&quot;,
     &quot;Application.test_app.src.screenshot.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.TestMain.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTest.shouldGiveNoDiscountForValue999.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTestTest.shouldGiveNoDiscountForValue999.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.src.test.java.src in java_edication.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.src.test.java.volk in java_edication.executor&quot;: &quot;Coverage&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-11&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/JONSBO/Documents/My Files/Разработка/2. Edication/2. java&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/1. Документы/Edication/2. Java/java_edication/lib/junit-platform-launcher-1.10.0.jar&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -86,9 +127,9 @@
     &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.20117188&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.29498163&quot;,
     &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
@@ -103,13 +144,13 @@
       <recent name="E:\1. Документы\Edication\2. Java\java_edication\bin\src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FilesTest">
-    <configuration name="CollectionsTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.algorithm.CollectionsTest" />
+  <component name="RunManager" selected="JUnit.TestMain">
+    <configuration name="UnitTestTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="src.test.UnitTestTest" />
       <module name="java_edication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="src.algorithm.CollectionsTest" />
+          <option name="PATTERN" value="src.test.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -117,72 +158,57 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CompareTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.algorithm.CompareTest" />
+    <configuration name="TestMain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java_edication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="src.algorithm.*" />
+          <option name="PATTERN" value="src.test.java.volk.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="src.test.java.volk" />
+      <option name="MAIN_CLASS_NAME" value="src.test.java.volk.TestMain" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="FilesTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.files.FilesTest" />
+    <configuration default="true" type="JUnit" factoryName="JUnit">
       <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.files.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="HAshMapTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.algorithm.HAshMapTest" />
+    <configuration name="src.test.java.volk in java_edication" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="java_edication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="src.algorithm.*" />
+          <option name="PATTERN" value="src.test.java.volk.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ListTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.algorithm.ListTest" />
-      <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.algorithm.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
+      <option name="PACKAGE_NAME" value="src.test.java.volk" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.FilesTest" />
-      <item itemvalue="Application.CollectionsTest" />
-      <item itemvalue="Application.CompareTest" />
-      <item itemvalue="Application.HAshMapTest" />
-      <item itemvalue="Application.ListTest" />
+      <item itemvalue="Application.UnitTestTest" />
+      <item itemvalue="JUnit.TestMain" />
+      <item itemvalue="JUnit.src.test.java.volk in java_edication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FilesTest" />
-        <item itemvalue="Application.HAshMapTest" />
-        <item itemvalue="Application.CompareTest" />
-        <item itemvalue="Application.ListTest" />
-        <item itemvalue="Application.CollectionsTest" />
+        <item itemvalue="JUnit.TestMain" />
+        <item itemvalue="JUnit.src.test.java.volk in java_edication" />
+        <item itemvalue="Application.UnitTestTest" />
       </list>
     </recent_temporary>
   </component>
@@ -210,7 +236,9 @@
       <workItem from="1729065373881" duration="4317000" />
       <workItem from="1729153539892" duration="6878000" />
       <workItem from="1729168009538" duration="52000" />
-      <workItem from="1729499176132" duration="633000" />
+      <workItem from="1729499176132" duration="8042000" />
+      <workItem from="1729588996401" duration="3942000" />
+      <workItem from="1729593653733" duration="2332000" />
     </task>
     <servers />
   </component>
@@ -272,5 +300,19 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/java_edication$UnitTestTest_shouldGiveNoDiscountForValue999.ic" NAME="UnitTestTest.shouldGiveNoDiscountForValue999 Coverage Results" MODIFIED="1729593670277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.test.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/java_edication$src_test_java_volk_in_java_edication.ic" NAME="src.test.java.volk in java_edication Coverage Results" MODIFIED="1729598919880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.test.java.volk.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/java_edication$src_test_java_src_in_java_edication.ic" NAME="src.test.java.src in java_edication Coverage Results" MODIFIED="1729598198295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.main.java.src.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/java_edication$UnitTest.ic" NAME="UnitTest Coverage Results" MODIFIED="1729597689906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.*</FILTER>
+    </SUITE>
   </component>
 </project>

@@ -2231,3 +2231,225 @@ System.out.println(dateTime.format(formatter));
 ```
 
 ### Тестирование
+
+- тест-кейс состоит из трёх частей
+    - Подготовка — определение входных параметров и предусловий.
+        - что нужно, чтобы начать тест?
+        - Какие данные нам потребуются?
+    - Исполнение — определение процедуры тестирования
+        - Как именно мы проверяем, что программа работает корректно?
+        - Какие для этого нужно вызвать методы?
+        - Какая будет последовательность действий?
+    - Проверка — сравнение ожидаемого результата с полученным
+- JUnit - фреймворк для тестов
+- фреймворк - особый класс библиотек
+    - в нем содержится набор классов и методов
+    - может использовать ваш код в своей работе (библиотека при это просто дает классы и методы)
+- методы
+    - assertEquals(Object object) - проверка объекта на null (вместо Assertions.assertEquals(null, value))
+    - assertNotEquals(Object object) - проверка, что не null
+    ```
+        @Test
+        public void shouldBeNull() {
+          String nullString = null;
+          Assertions.assertEquals(null, nullString);
+        }
+
+    ```
+    - assertTrue(...), assertFalse(...) - проверка на true/false, аналог assertEquals(true, value) или assertEquals(
+      false, value)
+- если сравнивать приватные поля будет ошибка, поэтому надо определить метод equals в классе
+
+```
+class IncorrectEqualsTest {
+
+    @Test
+    public void shouldReturnEquals() {
+        Item item1 = new Item("яблоки", 50);
+        Item item2 = new Item("яблоки", 50);
+
+        assertEquals(item2, item1);
+    }
+}
+
+class Item {
+
+    private String name;
+    private int price;
+
+    public Item(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return price == item.price && Objects.equals(name, item.name);
+    }
+}
+```
+
+- equals(..). Его нельзя переопределить для массивов
+    - assertThrows(...) - проверка выбросит ли метод исключение
+- если в одном тесте несколько раз создается объект класса, лучше вынести в поле
+    - но только если класс идемпотентен
+
+### Тестовое окружение
+
+- Среда, или окружение (англ. environment) — это сервер или группа серверов, на которых находится копия приложения.
+    - Конкретное окружение часто называется стендом
+- Среда разработки (англ. development environment), dev или dev-стенд.
+    - Используется исключительно для разработки. Именно сюда стекаются изменения от всех программистов, работающих над
+      проектом.
+    - Здесь же запускаются тесты, написанные разработчиками, и ставятся эксперименты
+- Тестовая среда (англ. test environment), test или test-стенд.
+    - Здесь продукт стабилизируется при помощи более сложных тестов.
+        - Например, интеграционных (англ. integration tests) — которые объединяют (интегрируют) несколько
+          программ/сервисов вместе.
+        - При интеграционном тестировании часто проверяют, корректно ли данные из одного сервиса передаются в другой.
+    - Такие тесты часто пишут отдельные команды тестировщиков.
+- Продуктовая среда (англ. production environment), или prod.
+    - Её ещё называют «боевая среда» как противоположность тестовой, «учебной».
+    - С ней взаимодействуют клиенты компании, поэтому любые ошибки могут привести к денежным и репутационным потерям.
+    - В идеальном мире к моменту выкладки кода на прод в программе уже не должно быть багов, влияющих на пользователя.
+- аннотации запуска тестового окружения
+    - @BeforeEach - перед каждым перед любым тестом, как раз для создания экземпляра класса для каждого теста
+
+```
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.Collections;
+
+public class OvercomplicatedCookieFactoryTest {
+
+    private static OvercomplicatedCookieFactory cookieFactory;
+
+    @BeforeEach
+    public void beforeEach() {
+        cookieFactory = new OvercomplicatedCookieFactory(
+                Collections.singletonList("Вам повезёт!"),
+                Collections.singletonList("Сегодня будет дождь."),
+                true
+        );
+    }
+
+    @Test
+    public void shouldReturnPositiveCookie() {
+        String cookieText = cookieFactory.bakeFortuneCookie();
+        Assertions.assertEquals("Вам повезёт!", cookieText);
+    }
+
+    @Test
+    public void shouldIncreaseCounterByOneAfterCookieBaked() {
+        cookieFactory.bakeFortuneCookie();
+        Assertions.assertEquals(1, cookieFactory.getCookiesCreated());
+    }
+}
+```
+
+- @BeforeAll (англ. «перед всеми») — один раз до запуска всех тестов;
+- @AfterEach (англ. «после каждого») — каждый раз после окончания каждого теста;
+- @AfterAll (англ. «после всех») — один раз после окончания всех тестов.
+- Аннотации, срабатывающие один раз: @BeforeAll и @AfterAll, должны стоять над статическим методом.
+    - Если метод будет не статичный, тест попросту не запустится.
+
+#### Граничные значения и классы эквивалентности
+
+- Граничные значения (англ. boundary values) — это параметры, при переходе через которые поведение программы меняется.
+    - Написать как минимум по одному тесту на каждое из граничных значений,
+        - а также по одному — на любое значение из каждого промежутка класса эквивалентности
+    - Проверить работу программы на каждом из граничных значений +/- одно значение
+- Классы эквивалентности (англ. equivalence class) — параметры, при вводе которых программа ведёт себя одинаково.
+
+#### Покрытие кода
+
+- покрытие кода (англ. code coverage), показывает, какой процент строк кода исполняется при запуске всех тестов
+    - Часто тестовое покрытие считают не от всего кода, а только от бизнес-логики (англ. business logic) программы
+    - не входят файлы конфигураций, настройки окружения и модели объектов
+    - Распространённая практика — устанавливать порог тестового покрытия бизнес-логики в 80%.
+- покрытие требований (англ. requirements coverage), она показывает процент требований, проверенных набором тестов.
+
+### Internet
+
+- URL - Uniform Resource Locator
+    - http://info.cern.ch/hypertext/WWW/TheProject.html
+        - http - протокол
+        - info.cern.ch — имя сервера, которому отправляется запрос
+        - hypertext/WWW/TheProject.html — местоположение ресурса на сервере
+- API - Application Programming Interface
+- end-point - эндпоинт - комбинация URL-адреса и HTTP-метода
+- путь (англ. path) — часть URL, отвечающая за местоположение ресурса на сервере.
+- Сокет (от англ. socket — «разъём», «розетка») — это средство операционной системы, через которое программа может
+  получить доступ к сети.
+    - Процесс получения доступа называется открытием сокета.
+    - IP-адрес и номер сетевого порта считаются параметрами сокета.
+
+### HttpServer
+
+- HttpServer.create(new InetSocketAddress(8080), 0); // создали и сразу привязали веб-сервер к порту
+    - 0 - беклог, число соединений в ожидании (0 - стандартное число подключений)
+    - либо аналогично
+        - HttpServer httpServer = HttpServer.create();
+        - httpServer.bind(new InetSocketAddress(8080), 0);
+- HttpHandler - интерфейс для эндпоинтов
+
+```
+public class HelloHandler implements HttpHandler {
+    @Override
+    public void handle(HttpExchange httpExchange) throws IOException {
+
+        String response = "Hey, its mu first Java http server";
+        httpExchange.sendResponseHeaders(200, 0);
+
+        try (OutputStream os = httpExchange.getResponseBody()) {
+            os.write(response.getBytes());
+        }
+    }
+}
+```
+
+- связываем сервер и обработчик
+    - httpServer.createContext("/hello", new HelloHandler());
+- запуск сервера
+    - httpServer.start();
+- для формирования JSON используется класс
+    - POJO (от англ. Plain Old Java Object — «простой классический Java-объект»). Слово «простой» здесь означает,
+        - что эти классы не наследуют поведение от классов сторонних библиотек.
+
+```
+public class UserPost {
+    // URL-адрес, по которому можно скачать фото
+    private String photoUrl;
+
+    // Дата публикации
+    private LocalDate publicationDate;
+
+    // Уникальный идентификатор автора поста
+    private int userId;
+    // Текстовой комментарий к фото
+    private String description;
+    // Сколько людей поставило лайк этому посту
+    private int likesQuantity;
+
+    public LocalDate getPublicationDate() {
+        return publicationDate;
+    }
+
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+...
+```
+
+- сериализация (англ. serialization) - Процесс трансформации Java-объекта в какой-то другой формат
+- десериализация (англ. deserialization) - обратный процесс
+- GSON - библиотека, позволяющая трансформировать Java-объекты в JSON, создана компанией Google

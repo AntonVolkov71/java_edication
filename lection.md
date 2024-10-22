@@ -2453,3 +2453,93 @@ public class UserPost {
 - сериализация (англ. serialization) - Процесс трансформации Java-объекта в какой-то другой формат
 - десериализация (англ. deserialization) - обратный процесс
 - GSON - библиотека, позволяющая трансформировать Java-объекты в JSON, создана компанией Google
+- десериализация - из строки в объект класса
+
+```
+   Gson gson = new Gson();
+    String jsonString = "{\"name\":\"Тузик\",\"owner\":{\"name\":\"Игорь\",\"surname\":\"Петров\"},\"age\":\"3\"}";
+
+    Dog dog = gson.fromJson(jsonString, Dog.class);
+    System.out.println(dog.getAge());
+        
+    // создайте экземпляр класса Owner (владелец)
+        Owner owner = dog.getOwner();
+
+        String ownerStr = gson.toJson(owner);
+        System.out.println(ownerStr);
+        
+    class Dog {
+    private String name;
+    private Owner owner;
+    private int age;
+
+    public Dog(String name, Owner owner, int age) {
+        this.name = name;
+        this.owner = owner;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+class Owner {
+    private String name;
+    private String surname;
+
+    public Owner(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+}s
+```
+
+#### Другие возможности GSON
+
+- GsonBuilder - отдельный класс-строитель, который обеспечивает удобное построение объектов других классов
+- -prettyPrinting()
+    - по умолчанию выключено
+    - читабельный вывод JSON
+
+```
+GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+```

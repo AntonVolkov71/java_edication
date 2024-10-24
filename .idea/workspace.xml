@@ -1,126 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
+    <list default="true" id="c49ec740-cf57-40d8-89a6-de547f4b8adf" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_api_5_11_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/libraries/gson_2_11_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/libraries/junit_jupiter_api_5_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/java_edication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/java_edication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_api_5_10_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_engine_5_10_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter_engine_5_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/junit_platform_launcher_1_10_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/libraries/junit_platform_launcher_1_11_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/java_edication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/java_edication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/libraries/junit_jupiter_api_5_10_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/libraries/junit_jupiter_engine_5_10_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/libraries/junit_jupiter_engine_5_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/libraries/junit_platform_launcher_1_10_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/junit_platform_launcher_1_11_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/java_edication/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/lection.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/volk/httpServer/HttpServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/volk/httpServer/HttpServerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Interface" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="FormatOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="KubernetesApiProvider">{
-    &quot;isMigrated&quot;: true
-    }</component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="OptimizeOnSaveOptions">
-    <option name="myRunOnSave" value="true" />
-  </component>
-  <component name="ProjectColorInfo">{
-    &quot;associatedIndex&quot;: 2
-    }</component>
-  <component name="ProjectId" id="2mpWxn3SG3i29koUCgGgQyCJoCU" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.B3GParser.executor&quot;: &quot;Run&quot;,
-    &quot;Application.B3GToJpegConverter.executor&quot;: &quot;Run&quot;,
-    &quot;Application.BinarySearch.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Collections.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CollectionsTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CompareTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.DepositCalculator.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FileReadWrite.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FilesTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HAshMapTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Hello.executor&quot;: &quot;Run&quot;,
-    &quot;Application.HttpServerTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.InsertionSort.executor&quot;: &quot;Debug&quot;,
-    &quot;Application.InstantTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Internet.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ListTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Main_1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MetaInfoForm.executor&quot;: &quot;Run&quot;,
-    &quot;Application.OptionalNameDemo.executor&quot;: &quot;Run&quot;,
-    &quot;Application.PlayUgadaika.executor&quot;: &quot;Run&quot;,
-    &quot;Application.RadixSort.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ReadBinaryFile.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Test1.executor&quot;: &quot;Run&quot;,
-    &quot;Application.Test2.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UnitTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UnitTestTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.src.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.test_app.src.screenshot.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;JUnit.TestMain.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.TestMain.shouldGiveNoDiscountForValue999.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTest.shouldGiveNoDiscountForValue999.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UnitTestTest.shouldGiveNoDiscountForValue999.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.src.test.java.src in java_edication.executor&quot;: &quot;Coverage&quot;,
-    &quot;JUnit.src.test.java.volk in java_edication.executor&quot;: &quot;Coverage&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-11&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/1. Документы/Edication/2. Java/java_edication/lib/junit-platform-launcher-1.10.0.jar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.20117188&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.29498163&quot;,
-    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "git-widget-placeholder": "Merging main",
+    "last_opened_file_path": "E:/1. Документы/Edication/2. Java/java_edication/lib/junit-platform-launcher-1.10.0.jar",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.29498163"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\1. Документы\Edication\2. Java\java_edication\src\b3g" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\1. Документы\Edication\2. Java\java_edication" />
-      <recent name="E:\1. Документы\Edication\2. Java\java_edication\bin\src" />
-    </key>
-  </component>
-  <component name="RunManager" selected="Application.HttpServerTest">
+}]]></component>
+  <component name="RunManager">
     <configuration name="HttpServerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="src.main.java.volk.httpServer.HttpServerTest" />
       <module name="java_edication" />
@@ -134,126 +51,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Internet" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.main.java.volk.Internet" />
-      <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.main.java.volk.httpServer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="src.main.java.volk.Main" />
-      <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.main.java.volk.httpServer.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestMain" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.test.java.volk.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
-      <option name="ALTERNATIVE_JRE_PATH" value="corretto-11" />
-      <option name="PACKAGE_NAME" value="src.test.java.volk" />
-      <option name="MAIN_CLASS_NAME" value="src.test.java.volk.TestMain" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TestMain.shouldGiveNoDiscountForValue999" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="java_edication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="src.test.java.volk.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="src.test.java.volk" />
-      <option name="MAIN_CLASS_NAME" value="src.test.java.volk.TestMain" />
-      <option name="METHOD_NAME" value="shouldGiveNoDiscountForValue999" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit">
-      <module name="java_edication" />
-      <option name="MAIN_CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <list>
-      <item itemvalue="Application.HttpServerTest" />
-      <item itemvalue="Application.Internet" />
-      <item itemvalue="Application.Main" />
-      <item itemvalue="JUnit.TestMain.shouldGiveNoDiscountForValue999" />
-      <item itemvalue="JUnit.TestMain" />
-    </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.HttpServerTest" />
-        <item itemvalue="Application.Internet" />
-        <item itemvalue="JUnit.TestMain" />
-        <item itemvalue="JUnit.TestMain.shouldGiveNoDiscountForValue999" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="" />
-      <created>1727774247828</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1727774247828</updated>
-      <workItem from="1727774248725" duration="2725000" />
-      <workItem from="1727789856898" duration="4977000" />
-      <workItem from="1727954196522" duration="7633000" />
-      <workItem from="1728030851599" duration="1538000" />
-      <workItem from="1728032399579" duration="135000" />
-      <workItem from="1728032556982" duration="10724000" />
-      <workItem from="1728115430427" duration="234000" />
-      <workItem from="1728115673132" duration="3057000" />
-      <workItem from="1728380297475" duration="9325000" />
-      <workItem from="1728479726101" duration="19549000" />
-      <workItem from="1728895915781" duration="2276000" />
-      <workItem from="1728898354124" duration="14513000" />
-      <workItem from="1728981690063" duration="6978000" />
-      <workItem from="1729065373881" duration="4317000" />
-      <workItem from="1729153539892" duration="6878000" />
-      <workItem from="1729168009538" duration="52000" />
-      <workItem from="1729499176132" duration="8042000" />
-      <workItem from="1729588996401" duration="3942000" />
-      <workItem from="1729593653733" duration="2332000" />
-      <workItem from="1729599158100" duration="7745000" />
-      <workItem from="1729758098874" duration="49000" />
-    </task>
     <servers />
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -265,67 +70,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/algorithm/BinarySearch.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/algorithm/BinarySearch.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/algorithm/InsertionSort.java</url>
-          <line>14</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/algorithm/InsertionSort.java</url>
-          <line>16</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/algorithm/InsertionSort.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/algorithm/InsertionSort.java</url>
-          <line>25</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/algorithm/InsertionSort.java</url>
-          <line>4</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/java_edication$UnitTestTest_shouldGiveNoDiscountForValue999.ic" NAME="UnitTestTest.shouldGiveNoDiscountForValue999 Coverage Results" MODIFIED="1729593670277" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>src.test.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/java_edication$src_test_java_volk_in_java_edication.ic" NAME="src.test.java.volk in java_edication Coverage Results" MODIFIED="1729598919880" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>src.test.java.volk.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/java_edication$src_test_java_src_in_java_edication.ic" NAME="src.test.java.src in java_edication Coverage Results" MODIFIED="1729598198295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>src.main.java.src.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/java_edication$UnitTest.ic" NAME="UnitTest Coverage Results" MODIFIED="1729597689906" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>src.*</FILTER>
-    </SUITE>
-    <SUITE FILE_PATH="coverage/java_edication$TestMain.ic" NAME="TestMain Coverage Results" MODIFIED="1729605134170" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>src.test.java.volk.*</FILTER>
-    </SUITE>
   </component>
 </project>

@@ -2534,7 +2534,11 @@ class Owner {
 #### Другие возможности GSON
 
 - GsonBuilder - отдельный класс-строитель, который обеспечивает удобное построение объектов других классов
+<<<<<<< HEAD
 - prettyPrinting()
+=======
+- -prettyPrinting()
+>>>>>>> 62de0d3af98c38a7fb4fff569426c5c31c6681bc
     - по умолчанию выключено
     - читабельный вывод JSON
 
@@ -2542,6 +2546,7 @@ class Owner {
 GsonBuilder gsonBuilder = new GsonBuilder();
         gsonBuilder.setPrettyPrinting();
         Gson gson = gsonBuilder.create();
+<<<<<<< HEAD
 ```
 
 - serializeNulls()
@@ -2702,3 +2707,6 @@ public class TypeAdapterTest extends TypeAdapter<LocalDate> {
      os.write("Тело ответа в виде простого текста".getBytes(StandardCharsets.UTF_8));
      os.close();
     ```
+=======
+```
+>>>>>>> 62de0d3af98c38a7fb4fff569426c5c31c6681bc

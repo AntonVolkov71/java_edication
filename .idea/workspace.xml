@@ -5,35 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e0b9365-d399-4b10-a925-ba4e04196443" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/java_edication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/java_edication.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/lection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/java_edication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/java_edication.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/lection.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/java_edication/lection.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/src/files/test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/src/files/test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/java_edication/src/screen/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/OptionalNameDemo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/BinarySearch.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/CollectionsTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/CompareTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/HAshMapTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/InsertionSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/ListTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/PlayUgadaika.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/RadixSort.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/Test1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/algorithm/Test2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/date/InstantTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/FilesTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/test.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/files/test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/Document.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/NoteBook.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screen/RussianPassport.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,70 +47,70 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.B3GParser.executor": "Run",
-    "Application.B3GToJpegConverter.executor": "Run",
-    "Application.BinarySearch.executor": "Run",
-    "Application.Collections.executor": "Run",
-    "Application.CollectionsTest.executor": "Run",
-    "Application.CompareTest.executor": "Run",
-    "Application.DepositCalculator.executor": "Run",
-    "Application.FileReadWrite.executor": "Run",
-    "Application.FilesTest.executor": "Run",
-    "Application.HAshMapTest.executor": "Run",
-    "Application.Hello.executor": "Run",
-    "Application.HttpServerTest.executor": "Run",
-    "Application.InsertionSort.executor": "Debug",
-    "Application.InstantTest.executor": "Run",
-    "Application.Internet.executor": "Run",
-    "Application.ListTest.executor": "Run",
-    "Application.Main (1).executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.Main_1.executor": "Run",
-    "Application.MetaInfoForm.executor": "Run",
-    "Application.OptionalNameDemo.executor": "Run",
-    "Application.PlayUgadaika.executor": "Run",
-    "Application.RadixSort.executor": "Run",
-    "Application.ReadBinaryFile.executor": "Run",
-    "Application.Test1.executor": "Run",
-    "Application.Test2.executor": "Run",
-    "Application.UnitTest.executor": "Run",
-    "Application.UnitTestTest.executor": "Run",
-    "Application.src.Main.executor": "Run",
-    "Application.test_app.src.screenshot.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.TestMain.executor": "Coverage",
-    "JUnit.TestMain.shouldGiveNoDiscountForValue999.executor": "Run",
-    "JUnit.UnitTest.executor": "Run",
-    "JUnit.UnitTest.shouldGiveNoDiscountForValue999.executor": "Run",
-    "JUnit.UnitTestTest.shouldGiveNoDiscountForValue999.executor": "Coverage",
-    "JUnit.src.test.java.src in java_edication.executor": "Coverage",
-    "JUnit.src.test.java.volk in java_edication.executor": "Coverage",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "corretto-11",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/1. Документы/Edication/2. Java/java_edication/lib/junit-platform-launcher-1.10.0.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.20117188",
-    "project.structure.side.proportion": "0.29498163",
-    "rearrange.code.on.save": "true",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.B3GParser.executor&quot;: &quot;Run&quot;,
+    &quot;Application.B3GToJpegConverter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.BinarySearch.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Collections.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CollectionsTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CompareTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DepositCalculator.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FileReadWrite.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FilesTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HAshMapTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Hello.executor&quot;: &quot;Run&quot;,
+    &quot;Application.HttpServerTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.InsertionSort.executor&quot;: &quot;Debug&quot;,
+    &quot;Application.InstantTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Internet.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ListTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main (1).executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main_1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MetaInfoForm.executor&quot;: &quot;Run&quot;,
+    &quot;Application.OptionalNameDemo.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PlayUgadaika.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RadixSort.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ReadBinaryFile.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test1.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Test2.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UnitTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UnitTestTest.executor&quot;: &quot;Run&quot;,
+    &quot;Application.src.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.test_app.src.screenshot.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JUnit.TestMain.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.TestMain.shouldGiveNoDiscountForValue999.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTest.shouldGiveNoDiscountForValue999.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UnitTestTest.shouldGiveNoDiscountForValue999.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.src.test.java.src in java_edication.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.src.test.java.volk in java_edication.executor&quot;: &quot;Coverage&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-11&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/1. Документы/Edication/2. Java/java_edication/lib/junit-platform-launcher-1.10.0.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.20117188&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.29498163&quot;,
+    &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\1. Документы\Edication\2. Java\java_edication\src\b3g" />
@@ -274,7 +247,8 @@
       <workItem from="1729499176132" duration="8042000" />
       <workItem from="1729588996401" duration="3942000" />
       <workItem from="1729593653733" duration="2332000" />
-      <workItem from="1729599158100" duration="7578000" />
+      <workItem from="1729599158100" duration="7745000" />
+      <workItem from="1729758098874" duration="49000" />
     </task>
     <servers />
   </component>

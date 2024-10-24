@@ -2453,3 +2453,252 @@ public class UserPost {
 - сериализация (англ. serialization) - Процесс трансформации Java-объекта в какой-то другой формат
 - десериализация (англ. deserialization) - обратный процесс
 - GSON - библиотека, позволяющая трансформировать Java-объекты в JSON, создана компанией Google
+- десериализация - из строки в объект класса
+
+```
+   Gson gson = new Gson();
+    String jsonString = "{\"name\":\"Тузик\",\"owner\":{\"name\":\"Игорь\",\"surname\":\"Петров\"},\"age\":\"3\"}";
+
+    Dog dog = gson.fromJson(jsonString, Dog.class);
+    System.out.println(dog.getAge());
+        
+    // создайте экземпляр класса Owner (владелец)
+        Owner owner = dog.getOwner();
+
+        String ownerStr = gson.toJson(owner);
+        System.out.println(ownerStr);
+        
+    class Dog {
+    private String name;
+    private Owner owner;
+    private int age;
+
+    public Dog(String name, Owner owner, int age) {
+        this.name = name;
+        this.owner = owner;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Owner getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+}
+
+class Owner {
+    private String name;
+    private String surname;
+
+    public Owner(String name, String surname) {
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+}s
+```
+
+#### Другие возможности GSON
+
+- GsonBuilder - отдельный класс-строитель, который обеспечивает удобное построение объектов других классов
+- prettyPrinting()
+    - по умолчанию выключено
+    - читабельный вывод JSON
+
+```
+GsonBuilder gsonBuilder = new GsonBuilder();
+        gsonBuilder.setPrettyPrinting();
+        Gson gson = gsonBuilder.create();
+```
+
+- serializeNulls()
+    - Если у Java-объекта какое-либо поле равно null, то по умолчанию такие поля не попадут в JSON.
+- registerTypeAdapter(Type type, Object typeAdapter)()
+    - принимает в качестве аргументов класс, который нужно конвертировать,
+    - а также typeAdapter (от англ. «адаптер типа») — правила его конвертации
+    - Чтобы написать свой конвертер, необходимо наследовать от абстрактного класса TypeAdapter, передав ему в качестве
+      дженерика класс,
+        - для которого требуется изменить логику сериализации.
+    - А затем переопределить методы write(...) и read(...).
+        - write()
+            - принимает в качестве аргументов два параметра
+            - 1-ый объект класса JsonWriter (отвечающий за конвертацию из объекта в строку.)
+            - 2-ой экземпляр класса, который необходимо конвертировать в строку.
+        - read(...)
+            - но в обратную сторону. С помощью экземпляра JsonReader он считывает указанный тип файла, который можно
+              впоследствии обработать.
+    - Метод jsonWriter.value(...) принимает на вход тот формат, в котором он должен появиться в итоговом JSON
+        - например, boolean, double или, как в нашем случае, String
+
+```
+public class HttpServerTest {
+    public static void main(String[] args) throws IOException {
+        UserPost post = new UserPost();
+        post.setPhotoUrl("https://new-social-network.site/images/928476864.jpg");
+        post.setUserId(97_748);
+        post.setDescription("Классное фото!");
+        post.setLikesQuantity(753);
+
+        // сконвертируйте publicationDateString в экземпляр LocalDate
+        String publicationDateString = "25--12--2020";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd--MM--yyyy");
+
+        LocalDate publicationDate = LocalDate.from(LocalDate.parse(publicationDateString, formatter));
+        post.setPublicationDate(publicationDate);
+        // создайте экземпляр Gson
+        Gson gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .registerTypeAdapter(LocalDate.class, new TypeAdapterTest())
+                .create();
+
+        // сериализуйте объект
+        String postSerialized = gson.toJson(post);
+        System.out.println("Serialized post: " + postSerialized);
+
+        // заменим дату в JSON на другой формат
+        String jsonWithAnotherDateFormat = postSerialized.replace("25--12--2020", "25.12.2020");
+
+        System.out.println("New json:\n" + jsonWithAnotherDateFormat);
+
+        // сконвертируем дату в формате 25.12.2020 в объект LocalDate
+        UserPost postDeserialized = gson.fromJson(jsonWithAnotherDateFormat, UserPost.class);
+        System.out.println("Deserialized post:\n" + postDeserialized);
+
+    }
+}
+
+public class TypeAdapterTest extends TypeAdapter<LocalDate> {
+    // задаём формат выходных данных: "dd--MM--yyyy"
+    private static final DateTimeFormatter formatterWriter = DateTimeFormatter.ofPattern("dd--MM--yyyy");
+    private static final DateTimeFormatter formatterReader = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+    @Override
+    public void write(JsonWriter jsonWriter, LocalDate localDate) throws IOException {
+        jsonWriter.value(localDate.format(formatterWriter));
+    }
+
+    @Override
+    public LocalDate read(JsonReader jsonReader) throws IOException {
+        return LocalDate.parse(jsonReader.nextString(), formatterReader);
+    }
+}
+```
+
+### API
+
+- Методы для чтения запрос
+    - InputStream getRequestBody()
+        - Метод возвращает тело запроса
+        - возвращает InputStream, который надо преобразовать
+      ```
+       InputStream inputStream = httpExchange.getRequestBody();
+       String body = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
+       System.out.println("Тело запроса:\n" + body);
+      
+      
+      static class HelloHandler implements HttpHandler {
+          @Override
+          public void handle(HttpExchange httpExchange) throws IOException {
+              System.out.println("Началась обработка /hello запроса от клиента.");
+  
+              InputStream inputStream = httpExchange.getRequestBody();
+              String body = new String(inputStream.readAllBytes(), DEFAULT_CHARSET);
+              System.out.println("Тело запроса:\n" + body);
+  
+              String response = "Привет! Рады видеть на нашем сервере.";
+              httpExchange.sendResponseHeaders(200, 0);
+  
+              try (OutputStream os = httpExchange.getResponseBody()) {
+                  os.write(response.getBytes());
+              }
+          }
+      }
+      ```
+    - String getRequestMethod()
+        - возвроащает метод запроса
+        - String method = httpExchange.getRequestMethod();
+    - Headers getRequestHeaders()
+        - прочитать заголовки, которые передал клиент
+        - тип возвращаемого Headers == Map<String,List<String>>
+          ```
+            Headers requestHeaders = httpExchange.getRequestHeaders();
+            System.out.println("Заголовки запроса: " + requestHeaders.get("User-Agent"));
+
+           List<String> contentTypeValues = requestHeaders.get("Content-type");
+            if ((contentTypeValues != null) && (contentTypeValues.contains("application/json"))) {
+              System.out.println("Это JSON!");
+            }
+          ```
+    - URI getRequestURI()
+        - метод возвращает URI, использованный клиентом при вызове сервера.
+      ```
+         URI requestURI = httpExchange.getRequestURI();
+         String path = requestURI.getPath();
+      ```
+    - Headers getResponseHeaders()
+        - метод форматирования ответа
+        - добавить к ответу заголовки
+      ``` 
+        Headers headers = httpExchange.getResponseHeaders();
+
+         // Content-Type — это один из стандартных заголовков
+         // с его помощью клиент понимает, в каком формате пришло тело ответа
+         // text/plain означает, что ответ состоит из простого текста
+         headers.set("Content-Type", "text/plain");
+
+         // можно создать свои собственные заголовки
+         headers.set("X-your-own-header", "any-information-you-want");
+         headers.set("X-your-own-header-2", "any-information-you-want-2"); 
+      ```
+    - void sendResponseHeaders(int rCode, long responseLength)
+        - метод sendResponseHeaders нужно вызывать до вызова getResponseBody().
+        - принимает на вход два параметра
+            - rCode
+            - responseLength
+    - OutputStream getResponseBody()
+        - определяется, что вернётся клиенту в теле ответа.
+        - Метод getResponseBody() возвращает объект OutputStream, в который нужно записать массив байтов.
+        - После того как байты записаны, у объекта OutputStream нужно вызвать метод close()
+    ```
+     try (OutputStream os = httpExchange.getResponseBody()) {
+       os.write("Тело ответа в виде простого текста".getBytes());
+     }
+  
+     или без try, тогда с close()
+     OutputStream os = httpExchange.getResponseBody();
+     os.write("Тело ответа в виде простого текста".getBytes(StandardCharsets.UTF_8));
+     os.close();
+    ```

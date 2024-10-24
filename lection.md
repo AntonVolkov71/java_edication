@@ -2747,3 +2747,76 @@ public class TypeAdapterTest extends TypeAdapter<LocalDate> {
         }
     }
 ```
+
+#### Обработка JSON в ответе
+- import com.google.gson.JsonArray; // описывает JSON-массив
+- import com.google.gson.JsonElement; // описывает любой тип данных JSON
+- import com.google.gson.JsonObject; // описывает JSON-объект
+- import com.google.gson.JsonParser; // разбирает JSON-документ на элементы
+- JsonParser.parseString(String json) 
+  - получить доступ к элементам JSON-документа
+  - В качестве параметра в метод передаётся текст в формате JSON
+  ```
+    // разбираем строку в формате JSON на элементы
+    JsonElement jsonElement = JsonParser.parseString(response.body());
+    
+    if(jsonElement.isJsonObject()) { // проверяем, является ли элемент JSON-объектом
+      // преобразуем в JSON-объект
+      JsonObject jsonObject = jsonElement.getAsJsonObject();
+    } else {
+    // преобразуем в JSON-массив
+    JsonArray jsonArray = jsonElement.getAsJsonArray();
+    }
+  
+  ```
+- get(String) 
+  - Для работы с полями JSON-объекта
+  - принимает название поля и возвращает его значение в виде JsonElement
+  - JsonElement
+    - getAsString() преобразует JSON-элемент в строку;
+    - getAsLong() преобразует JSON-элемент в число;
+    - getAsBoolean() преобразует JSON-элемент в логическое значение.
+```
+public static void main(String[] args) {
+        HttpClient client = HttpClient.newHttpClient();
+
+        // делаем запрос с параметром name
+        URI url = URI.create("https://ipwhois.app/json/46.226.227.20?lang=ru");
+        HttpRequest request = HttpRequest.newBuilder().uri(url).GET().build();
+
+        try {
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            // проверяем, успешно ли обработан запрос
+            if (response.statusCode() == 200) {
+                // передаем парсеру тело ответа в виде строки, содержащей данные в формате JSON
+                JsonElement jsonElement = JsonParser.parseString(response.body());
+
+                if(!jsonElement.isJsonObject()) { // проверяем, точно ли мы получили JSON-объект
+                    System.out.println("Ответ от сервера не соответствует ожидаемому.");
+                    return;
+                }
+
+                // преобразуем результат разбора текста в JSON-объект
+                JsonObject jsonObject = jsonElement.getAsJsonObject();
+
+                // получаем название страны
+                String country = jsonObject.get("country").getAsString();
+
+                // получаем название города
+                String city = jsonObject.get("city").getAsString();
+                
+                // получаем значение широты
+                double latitude = jsonObject.get("latitude").getAsDouble();
+
+                System.out.println("Страна: " + country);
+                System.out.println("Город: " + city);
+                System.out.println("Широта: " + latitude);
+            } else {
+                System.out.println("Что-то пошло не так. Сервер вернул код состояния: " + response.statusCode());
+            }
+        } catch (IOException | InterruptedException e) { // обрабатываем ошибки отправки запроса
+            System.out.println("Во время выполнения запроса ресурса по url-адресу: '" + url + "', возникла ошибка.\n" +
+                    "Проверьте, пожалуйста, адрес и повторите попытку.");
+        }
+    }
+```

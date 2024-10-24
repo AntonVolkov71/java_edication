@@ -2996,3 +2996,156 @@ pom.xml # файл с инструкциями
   <version>1.0</version>
 </project>
 ```
+- для поддержки например 11 версии Java, необходимо добавить в pom.xml
+    - <properties> (англ. «свойства»), где укажем нужные параметры
+      - <maven.compiler.source> — этот параметр будет указывать на то, что исходный код проекта будет написан с использованием возможностей Java 11.
+      - <maven.compiler.target> — так задаётся версия языка, под которую должен быть скомпилирован код проекта.
+      - <maven.compiler.release> — за счёт этого параметра система сборки поймёт, какую целевую платформу указать компилятору.
+      - <project.build.sourceEncoding> — дополнительно в параметрах проекта принято указывать кодировку текста исходного кода.    
+          - Это особенно актуально для стран с кириллическим алфавитом — компилятор сможет правильно вписать не латинские значения констант в получившийся код классов.
+```
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ru.yandex.practicum</groupId>
+  <artifactId>hello-maven</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>Archetype - hello-maven</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
+  </properties>
+</project>
+```
+- плагины
+  - это пакеты, которые дополняют функциональность системы сборки
+  - секция <build>
+    - блок для настройки плагинов <plugins> и указание нужного плагина в <plugin>
+```
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo.maven.apache.org/maven2</url>
+    </repository>
+  </repositories>
+
+  <groupId>ru.yandex.practicum</groupId>
+  <artifactId>hello-maven</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <name>Archetype - hello-maven</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.release>11</maven.compiler.release>
+  </properties>
+
+  <!-- блок настройки процесса сборки -->
+  <build>
+    <pluginManagement>
+      <!-- блок настройки плагинов -->
+      <plugins>
+        <!-- конкретный плагин -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
+
+```
+
+- Внутри блоков <resources> → <resource> разработчик может указать
+  - какие дополнительные файлы и папки должны войти в итоговую сборку
+```
+<build>
+<resources>
+    <resource>
+        <directory>java-rest/rest/resources</directory>
+        <filtering>true</filtering>
+    </resource>
+</resources>
+</build>
+```
+- Maven существует и развивается довольно давно, тегов для оформления POM достаточно много. Среди них можно выделить следующие:
+  - Зависимости — <dependencies>;
+  - Задачи/цели — <goals>;
+  - Профиль создания — <profiles>;
+  - Разработчики — <developers>;
+  - Список рассылки — <mailingLists>;
+  - Родительский проект — <parent>.
+- Для подключения библиотеки нужно прописать путь к ней. 
+  - Создадим блок <dependencies> → <dependency>
+```
+     <dependencies>
+       <dependency>
+           <groupId>com.google.code.gson</groupId>
+           <artifactId>gson</artifactId>
+           <version>2.8.8</version>
+       </dependency>
+     </dependencies>
+  ```
+
+### Репозитории Maven
+- В терминах Maven репозиторий 
+  - это директория, где хранятся все файлы проекта, библиотеки, плагины и любые другие артефакты
+- Локальный
+  - это папка на вашем компьютере. Локальный репозиторий создаётся при первом запуске любой команды Maven
+  - Windows: C:\\Users\\<имя пользователя>\\.m2 (Или Win+R > Обзор...>.m2)
+- удалённый 
+  - тип репозитория, доступ к которому осуществляется с помощью различных протоколов, 
+  - таких как https://, file:// и других. 
+  - Удалённые репозитории могут создаваться как каким-либо сообществом, так и организацией, которая разрабатывает проект
+- центральный
+  - предоставляется сообществом Maven и содержит огромное количество часто используемых библиотек. 
+  - Их можно скачать и использовать. 
+  - Содержимое Maven Central можно посмотреть по адресу https://repo.maven.apache.org/maven2/.
+
+#### Подключение удалённых репозиториев
+- Их подключают отдельно. Для этого нужны теги <repositories>, <repository>
+- При подключении репозитория необходимо определить его идентификатор (<id>) и url (<url>).
+  - Первый — с библиотеками на файловой системе. 
+  - Второй — по https://, где путь меняется в зависимости от используемых настроек
+```
+<repositories>
+    <repository>
+        <id>additional-local-dir</id>
+        <url>file://path/to/directory</url>
+    </repository>
+    <repository>
+        <id>org-remote-repository</id>
+        <url>https://maindomain.org/maven2</url>
+    </repository>
+<repositories>
+```
+
+#### Поиск, скачивание и хранение зависимостей
+- Все зависимости проекта хранятся в локальном репозитории. 
+  - К примеру, библиотеку, которую вы подключили в предыдущем уроке, 
+  - можно найти в папке .m2 по пути repository/com/google/code/gson/gson/2.8.8.
+- При подключении новой зависимости Maven запускает её поиск в таком порядке.
+  - Сначала проверяет наличие зависимости в локальном репозитории. Если она найдена, то поиск прекращается.
+  - Если зависимости в локальном репозитории нет, Maven идёт в центральный репозиторий. При обнаружении зависимость скачивается в локальный репозиторий, и процесс поиска прекращается.
+  - Если зависимости нет в Maven Central и удалённые репозитории не указаны — процесс завершается с ошибкой.
+  - Если зависимости нет в Maven Central, но при этом определён один или несколько удалённых репозиториев, то Maven проверяет их.
+  - Если зависимость найдена, она скачивается в локальный репозиторий, если нет — поиск прерывается, и выдаётся ошибка, что зависимость не может быть найдена.
+
+#### Зачем хранить всё в локальном репозитории
